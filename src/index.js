@@ -1,9 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Route, Router, IndexRoute, browserHistory } from 'react-router';
+import App from './App.js';
+import Dashboard from './Dashboard.js';
+import Login from './Login.js';
+import SignUp from './SignUp.js';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+	<Router history={browserHistory}>
+	    <Route path="/">
+	       	<IndexRoute path="/" component={App} />
+			<Route path="/Dashboard" component={Dashboard} />
+			<Route path="/Login" component={Login} />
+			<Route path="/SignUp" component={SignUp} />
+	    </Route> 
+  	</Router>,
+  	document.getElementById('root')
 );
