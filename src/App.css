@@ -6,9 +6,9 @@
   position:fixed; 
   top:0px; 
   left:0px;
-  height:100px; 
+  height:50px; 
   right:0px;
-  background-color: #222;
+  background-color: #111;
 }
 
 .main-content {
@@ -29,12 +29,16 @@
   left:0px; 
   right:0px; 
   overflow:hidden;
-  background-color: #222;
+  background-color: #111;
 }
 
 .imgHome {
     height: 100%;
     width: 100%;
+}
+
+.marginRight {
+    margin-right: 950px;
 }
 
 .App {
@@ -57,13 +61,17 @@
 }
 .login{
   background-color: gray;
-  height: 450px;
-  padding: 20px;
+  height: 100%;
+  padding: 100px;
   color: white;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.btn-link{
+  color: #fff;
 }
 
 body {

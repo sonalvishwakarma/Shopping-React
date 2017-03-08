@@ -7,41 +7,6 @@ var EMPLOYEES = [
 	{name: 'Shwetam Thakur', age: 26, Designation: 'Manager'}
 ];
 
-export class Employee  extends Component {
-  	render() {
-    	return (
-			<tr>
-				<td>{this.props.employee.name}</td>
-				<td>{this.props.employee.age}</td>
-				<td>{this.props.employee.Designation}</td>
-			</tr>		
-      	);
-  	}
-};
-
-export class EmployeeTable extends Component {
-  	render() {
-    var rows = [];
-    	this.props.employees.forEach(function(employee) {
-      	rows.push(<Employee employee={employee} />);
-    });
-    return (
-      	<table className="App-table">
-	        <thead>
-	          	<tr>
-	            	<th>Name</th>
-	            	<th>Age</th>
-	            	<th>Designation</th>
-	          	</tr>
-	        </thead>
-	        <tbody>
-	        	{rows}
-	        </tbody>
-      	</table>
-      	);
-  	}
-};
-
 class Dashboard extends Component {
 
 	constructor(props) {
@@ -111,26 +76,7 @@ class Dashboard extends Component {
 					<div>
 						<span>Welcome </span> <p id="name" value={this.props.value}></p>						<span>Welcome </span> <p id="name" value={this.props.value}></p>
 						<span>Welcome </span> <p id="uname" value={this.props.value}></p>						<span>Welcome </span> <p id="name" value={this.props.value}></p>
-
-							<br></br>
 						<button onClick={this.handleLogout}>Logout</button>
-							<br></br>
-					</div>
-					{/*<EmployeeTable employees={EMPLOYEES} />*/}
-					<hr></hr>
-					<div>
-					 	<form>
-							<span>Name : </span><input type="text" value={this.state.name} onChange={this.handleName.bind(this)}/>
-								<br></br>
-								<br></br>
-							<span>Age : </span><input type="text" value={this.state.age} onChange={this.handleAge.bind(this)}/>
-				              	<br></br>
-								<br></br>
-							<span>Designation : </span><input type="text" value={this.state.designation} onChange={this.handleDesignation.bind(this)}/>
-								<br></br>
-								<br></br>
-							<button onClick={this.saveData}>Save</button>
-						</form>
 					</div>
 				</div>
 			</div>
