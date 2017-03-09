@@ -5,6 +5,7 @@ import App from './App.js';
 import Dashboard from './Dashboard.js';
 import Login from './Login.js';
 import SignUp from './SignUp.js';
+import Profile from './Profile.js';
 import './index.css';
 
 ReactDOM.render(
@@ -14,6 +15,7 @@ ReactDOM.render(
 			<Route path="/Dashboard" component={Dashboard} />
 			<Route path="/Login" component={Login} />
 			<Route path="/SignUp" component={SignUp} />
+			<Route path="/Profile" component={Profile} />
 	    </Route> 
   	</Router>,
   	document.getElementById('root')

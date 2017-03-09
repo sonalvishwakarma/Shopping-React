@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { browserHistory, Link } from 'react-router';
-import logo from './logo.svg';
+import { browserHistory } from 'react-router';
+import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
+import user from './user.json';
 
 class Login extends Component {
 
@@ -14,6 +15,14 @@ class Login extends Component {
          	    pwd : ''
     		};
     	this.handleLogin = this.handleLogin.bind(this);
+
+    	console.log(user,"++++++")
+
+    	for(var i = 0; i < user.length; i++) {
+		    var obj = user[i];
+
+		    console.log("Name: " + obj.name);
+		}
   	}
 
   	handleEmailChange(event) {
@@ -27,7 +36,7 @@ class Login extends Component {
   	handleLogin() {
 
 	    if(this.state.name === 'sonal.v@gmail.com' && this.state.pwd === '12345' ){
-	    	browserHistory.push('/App');
+	    	browserHistory.push('/');
 	    	localStorage.setItem('auth-name', JSON.stringify(this.state.name));
 	   		localStorage.setItem('auth-Pwd', JSON.stringify(this.state.pwd));
 	   		this.isLogged = true;
@@ -44,19 +53,8 @@ class Login extends Component {
 
 	render(){
 		return (
-
 			<div className="main-app">
-                <div id="header" className="main-head"> 
-                    <ul className="header">
-                        <li><img src={logo} className="App-logo" alt="logo" /></li>
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link to="dashboard">Dashboard</Link></li>
-                        <li><Link to="product">Product</Link></li>
-                        <li><Link to="login">Login</Link></li>
-                        <li><Link to="signUp">SignUp</Link></li>
-                        <li><Link to="profile">Profile</Link></li>
-                    </ul>
-                </div> 
+                <Header/> 
                 <div id="content" className="main-content"> 
 				   	<div className="login">
 						<h2>Login</h2>
@@ -99,8 +97,6 @@ class Login extends Component {
   						</Form>
 					</div>
 				</div> 
-                <div id="footer" className="main-footer"> 
-                </div>
             </div>
         );
 	}

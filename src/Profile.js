@@ -1,73 +1,28 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
-class SignUp extends Component{
+class Profile extends Component{
 	constructor(props) {
    	super(props);
-    		this.state = {
-    			name : '', 
-    			contactn: '',
-    			email : '',
-         	    pwd : '',
-         	    confirmPwd:''
-    		};
-    	this.handleSignUp = this.handleSignUp.bind(this);
+		this.state = {
+			name : '', 
+			contactn: '',
+			email : '',
+     	    pwd : '',
+     	    confirmPwd:''
+		};
   	}
-
-  	handleNameChange(event) {
-    	this.setState({name: event.target.value});
-  	}
-    
-    handleContactNoChange(event) {
-    	this.setState({contactn: event.target.value});
-  	}
-
-  	handleEmailChange(event) {
-    	this.setState({email: event.target.value});
-  	}
-    
-    handlePwdChange(event) {
-    	this.setState({pwd: event.target.value});
-  	}
-
-  	handleConfirmPwdChange(event) {
-    	this.setState({confirmPwd: event.target.value});
-  	}
-    
-  	handleSignUp() {
-
-	    if(this.state.name !== '' && this.state.contactn !== '' &&  this.state.email !== '' && this.state.pwd !== '' && this.state.confirmPwd !== '' && this.state.pwd === this.state.confirmPwd){
-	    	browserHistory.push('/');
-	    	localStorage.setItem('User-name', JSON.stringify(this.state.name));
-	   		localStorage.setItem('User-contactn', JSON.stringify(this.state.contactn));
-	   		localStorage.setItem('User-name', JSON.stringify(this.state.email));
-	   		localStorage.setItem('User-pwd', JSON.stringify(this.state.pwd));
-	   		localStorage.setItem('User-confirmPwd', JSON.stringify(this.state.confirmPwd));
-
-	   		this.isLogged = true;
-	   		localStorage.setItem('islogged', JSON.stringify(this.isLogged));
-	    }
-	    
-	    else if(this.state.pwd !== this.state.confirmPwd){
-	  		alert("Password and confrim password dose not match");
-	  	}
-
-	    else{
-	        alert("Please enter details");
-	  	}
-	}
-
+   
 	render(){
 		return (
 			<div className="main-app">
                	<Header/> 
                 <div id="content" className="main-content"> 
 				   <div className="login">
-						<h2>Sign Up</h2>
+						<h2>My Profile</h2>
 
 						<Form horizontal>
 						    <FormGroup controlId="formHorizontalEmail">
@@ -78,7 +33,7 @@ class SignUp extends Component{
 						        <FormControl
 				                    type="text"
 				                    placeholder="Enter your full name" bsSize="sm" 
-				                    value={this.state.name} onChange={this.handleNameChange.bind(this)}/>
+				                    value={this.state.name}/>
 				                <FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
@@ -91,7 +46,8 @@ class SignUp extends Component{
 						        <FormControl
 				                    type="number"
 				                    placeholder="Enter your contact number" bsSize="sm"
-									value={this.state.contactn} onChange={this.handleContactNoChange.bind(this)}/>				                <FormControl.Feedback />
+									value={this.state.contactn}/>				                
+									<FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
 
@@ -103,7 +59,7 @@ class SignUp extends Component{
 						        <FormControl
 				                    type="email"
 				                    placeholder="Enter your email" bsSize="sm" 
-				                    value={this.state.email} onChange={this.handleEmailChange.bind(this)}/>
+				                    value={this.state.email}/>
 				                <FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
@@ -116,7 +72,8 @@ class SignUp extends Component{
 						        <FormControl
 				                    type="password"
 				                    placeholder="Enter your password" bsSize="sm"
-									value={this.state.pwd} onChange={this.handlePwdChange.bind(this)} />				                <FormControl.Feedback />
+									value={this.state.pwd}  />				                
+									<FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
 
@@ -128,14 +85,18 @@ class SignUp extends Component{
 						        <FormControl
 				                    type="password"
 				                    placeholder="Enter your confirm password" bsSize="sm" 
-									value={this.state.confirmPwd} onChange={this.handleConfirmPwdChange.bind(this)}/>				                <FormControl.Feedback />
+									value={this.state.confirmPwd} />				                
+									<FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
 
 						    <FormGroup>
 						      	<Col smOffset={2} sm={10}>
-			                		<Button type="submit" bsStyle="primary" onClick={this.handleSignUp}>
-						          		Sign in
+			                		<Button type="submit" bsStyle="primary" >
+						          		Edit
+						        	</Button>
+						        	<Button type="submit" bsStyle="primary" >
+						          		Save
 						        	</Button>
 						      	</Col>
 						    </FormGroup>
@@ -148,4 +109,4 @@ class SignUp extends Component{
 	}
 }
 
-export default SignUp;
+export default Profile;

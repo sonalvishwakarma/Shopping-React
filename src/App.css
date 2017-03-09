@@ -32,13 +32,30 @@
   background-color: #111;
 }
 
+.listItem {
+  color: #337ab7;
+}
+.addtoCart{
+   height: 19px;
+   width: 25px;
+}
+
+.colmd{
+    width: 25%;
+}
+
+.iconImg{
+    height: 50px;
+    width: 50px;
+}
+
 .imgHome {
     height: 100%;
     width: 100%;
 }
 
 .marginRight {
-    margin-right: 950px;
+    margin-right: 800px;
 }
 
 .App {
