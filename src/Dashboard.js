@@ -19,7 +19,7 @@ class Dashboard extends Component {
 					 	<div>
 					        <Col xs={12} xs={4} md={4}>
 						        <a href="/Profile">
-						        	<Panel header="Profile" footer="More Info Here" bsStyle="info" >
+						        	<Panel header="Profile" footer="More Info Here" bsStyle="info">
 						             	<img className="iconImg" src={images} alt="profile"/>
 						          	</Panel>
 					            </a>

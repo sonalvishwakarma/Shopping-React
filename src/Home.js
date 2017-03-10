@@ -8,20 +8,10 @@ import { Button} from 'react-bootstrap';
 
 class Header extends Component {
 
-    getIntial(){
-        if(JSON.parse(localStorage.getItem("auth-name"))){
-            document.getElementById('name').innerHTML = JSON.parse(localStorage.getItem("auth-name"))
-        };
-    }
-
     handleLogout() {
         localStorage.clear();
         browserHistory.push('/');
     }
-
-    componentDidMount() {
-        this.getIntial();
-    };
 
     render() {
         return (
@@ -33,13 +23,13 @@ class Header extends Component {
                     <li><Link to="dashboard">Dashboard</Link></li>
                     <li><Link to="product" className="marginRight">Product</Link></li>
                    
-                    { JSON.parse(localStorage.getItem("islogged")) === true ? 
+                    { JSON.parse(localStorage.getItem("Token")) !== '' ? 
                         (<li><Link to="profile">Profile</Link></li>)
                         :(<li><Link to="signUp">SignUp</Link></li>)
                     }
                     <li><Button type="submit">Cart<img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></li>
 
-                    { JSON.parse(localStorage.getItem("islogged")) === true ? 
+                    { JSON.parse(localStorage.getItem("Token")) !== '' ? 
                         (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
                         :(<li><Link to="login">Login</Link></li>)
                     }

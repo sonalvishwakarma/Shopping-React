@@ -7,13 +7,19 @@ import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-boot
 class Profile extends Component{
 	constructor(props) {
    	super(props);
-		this.state = {
-			name : '', 
-			contactn: '',
-			email : '',
-     	    pwd : '',
-     	    confirmPwd:''
-		};
+	   this.state = {
+           	email : '',
+         	password : '',
+	   }
+  	}
+
+  	componentDidMount(){
+       this.getIntialData()
+  	}
+
+  	getIntialData(){
+  		document.getElementById("name").innerHTML = JSON.parse(localStorage.getItem("Email"));
+  		document.getElementById("pwd").innerHTML = JSON.parse(localStorage.getItem("Password"));
   	}
    
 	render(){
@@ -25,68 +31,32 @@ class Profile extends Component{
 						<h2>My Profile</h2>
 
 						<Form horizontal>
+
 						    <FormGroup controlId="formHorizontalEmail">
 						      <Col componentClass={ControlLabel} sm={2}>
-						        Name
+						        Email  :
 						      </Col>
 						      <Col sm={10}>
-						        <FormControl
+						        <p id="name" value={this.props.value}></p>
+						        {/*<FormControl
 				                    type="text"
-				                    placeholder="Enter your full name" bsSize="sm" 
-				                    value={this.state.name}/>
-				                <FormControl.Feedback />
+				                    placeholder="Enter your UserName" id="name" bsSize="sm" 
+				                    value={this.props.value}/>
+				                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
 						    <FormGroup controlId="formHorizontalPassword">
 						      <Col componentClass={ControlLabel} sm={2}>
-						        Contact No
+						        Password  :
 						      </Col>
 						      <Col sm={10}>
-						        <FormControl
-				                    type="number"
-				                    placeholder="Enter your contact number" bsSize="sm"
-									value={this.state.contactn}/>				                
-									<FormControl.Feedback />
-						      </Col>
-						    </FormGroup>
-
-						    <FormGroup controlId="formHorizontalEmail">
-						      <Col componentClass={ControlLabel} sm={2}>
-						        Email
-						      </Col>
-						      <Col sm={10}>
-						        <FormControl
-				                    type="email"
-				                    placeholder="Enter your email" bsSize="sm" 
-				                    value={this.state.email}/>
-				                <FormControl.Feedback />
-						      </Col>
-						    </FormGroup>
-
-						    <FormGroup controlId="formHorizontalPassword">
-						      <Col componentClass={ControlLabel} sm={2}>
-						        Password
-						      </Col>
-						      <Col sm={10}>
-						        <FormControl
+						        <p id="pwd" value={this.props.value}></p>
+						        {/*<FormControl
 				                    type="password"
 				                    placeholder="Enter your password" bsSize="sm"
-									value={this.state.pwd}  />				                
-									<FormControl.Feedback />
-						      </Col>
-						    </FormGroup>
-
-						    <FormGroup controlId="formHorizontalEmail">
-						      <Col componentClass={ControlLabel} sm={2}>
-						        Confirm Password
-						      </Col>
-						      <Col sm={10}>
-						        <FormControl
-				                    type="password"
-				                    placeholder="Enter your confirm password" bsSize="sm" 
-									value={this.state.confirmPwd} />				                
-									<FormControl.Feedback />
+									value={this.props.Password}  />				                
+									<FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 

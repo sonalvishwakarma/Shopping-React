@@ -9,9 +9,9 @@ import Profile from './Profile.js';
 import './index.css';
 
 ReactDOM.render(
-	<Router history={browserHistory}>
+	<Router history={browserHistory} >
 	    <Route path="/">
-	       	<IndexRoute path="/" component={App} />
+	       	<IndexRoute component={App} />
 			<Route path="/Dashboard" component={Dashboard} />
 			<Route path="/Login" component={Login} />
 			<Route path="/SignUp" component={SignUp} />

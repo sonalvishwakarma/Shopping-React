@@ -3,47 +3,63 @@ import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
-import user from './user.json';
+import { Button, FormGroup,ControlLabel, FormControl, Col,Form,Alert} from 'react-bootstrap';
 
 class Login extends Component {
 
  	constructor(props) {
    	super(props);
-    		this.state = {
-    			name : '',
-         	    pwd : ''
-    		};
+		
+		this.state = {
+			email : '',
+     	    password : ''
+		};
     	this.handleLogin = this.handleLogin.bind(this);
-
-    	console.log(user,"++++++")
-
-    	for(var i = 0; i < user.length; i++) {
-		    var obj = user[i];
-
-		    console.log("Name: " + obj.name);
-		}
   	}
 
   	handleEmailChange(event) {
-    	this.setState({name: event.target.value});
+    	this.setState({email: event.target.value});
   	}
     
     handlePwdChange(event) {
-    	this.setState({pwd: event.target.value});
+    	this.setState({email: this.state.email, password: event.target.value});
   	}
 
   	handleLogin() {
 
-	    if(this.state.name === 'sonal.v@gmail.com' && this.state.pwd === '12345' ){
+	    if(this.state.email !== '' && this.state.password !== '' ){
+          console.log(this.state.email)
 	    	browserHistory.push('/');
-	    	localStorage.setItem('auth-name', JSON.stringify(this.state.name));
-	   		localStorage.setItem('auth-Pwd', JSON.stringify(this.state.pwd));
-	   		this.isLogged = true;
-	   		localStorage.setItem('islogged', JSON.stringify(this.isLogged));
+	    	localStorage.setItem('Email', JSON.stringify(this.state.email));
+	   		localStorage.setItem('Password', JSON.stringify(this.state.password));
+
+		   	fetch('https://reqres.in/api/login', {
+				method: 'post',
+				headers: {
+				    'Content-Type': 'application/json'
+				  },
+				body: JSON.stringify({
+				    email: this.state.email,
+				    password: this.state.password
+				})
+			})
+			.then(function(response) 
+				{ 
+					return response.json()
+					.then(function(json) {  
+					this.setState({
+						data: json
+					});
+					if(json !== ''){
+						localStorage.setItem('Token', JSON.stringify(json.token));
+						console.log(json, "Successfully Log in")    
+						alert("Successfully Log in") 
+					}
+				}.bind(this))
+			}.bind(this));
 
 	    }
-	    else if(this.state.name === '' && this.state.pwd === '' ){
+	    else if(this.state.email === '' && this.state.password === '' ){
 	        alert("Oops! You are not providing crendentials, please enter email and password");
 	  	}
 	  	else {
@@ -68,7 +84,7 @@ class Login extends Component {
 						        <FormControl
 				                    type="text"
 				                    placeholder="Enter your email" bsSize="sm" 
-				                    value={this.state.name} onChange={this.handleEmailChange.bind(this)}/>
+				                    value={this.state.email} onChange={this.handleEmailChange.bind(this)}/>
 				                <FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
@@ -81,7 +97,7 @@ class Login extends Component {
 						        <FormControl
 				                    type="password"
 				                    placeholder="Enter your password" bsSize="sm"
-				                    value={this.state.pwd} onChange={this.handlePwdChange.bind(this)}/>
+				                    value={this.state.password} onChange={this.handlePwdChange.bind(this)}/>
 				                <FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
