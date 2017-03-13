@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+{/*import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
-class Login extends Component {
-
- 	constructor(props) {
+class SignUp extends Component{
+	constructor(props) {
    	super(props);
-		
-		this.state = {
-			email : '',
-     	    password : ''
-		};
-    	this.handleLogin = this.handleLogin.bind(this);
+    		this.state = {
+    			email : '',
+         	    password : '',
+    		};
+    	this.handleSignUp = this.handleSignUp.bind(this);
   	}
 
   	handleEmailChange(event) {
@@ -22,18 +20,17 @@ class Login extends Component {
   	}
     
     handlePwdChange(event) {
-    	this.setState({email: this.state.email, password: event.target.value});
+    	this.setState({password: event.target.value});
   	}
+    
+  	handleSignUp() {
 
-  	handleLogin() {
-
-	    if(this.state.email !== '' && this.state.password !== '' ){
-          console.log(this.state.email)
+	    if(this.state.email !== '' && this.state.Password !== '' ){
 	    	browserHistory.push('/');
-	    	localStorage.setItem('Email', JSON.stringify(this.state.email));
+	   		localStorage.setItem('Email', JSON.stringify(this.state.email));
 	   		localStorage.setItem('Password', JSON.stringify(this.state.password));
 
-		   	fetch('https://reqres.in/api/login', {
+	   		fetch('https://reqres.in/api/login', {
 				method: 'post',
 				headers: {
 				    'Content-Type': 'application/json'
@@ -43,33 +40,46 @@ class Login extends Component {
 				    password: this.state.password
 				})
 			})
+			.then(function(response) 
+				{ 
+					return response.json()
+					.then(function(json) {  
+					this.setState({
+						data: json
+					});
 
+					if(json !== '' && JSON.parse(localStorage.getItem("Token")) !== json.token){
+					    localStorage.setItem('Token', JSON.stringify(json.token));
+						console.log(json, "Successfully Sign in")   
+						alert("Successfully Sign in")
+					}	 
+				}.bind(this))
+			}.bind(this));
 
 	    }
-	    else if(this.state.email === '' && this.state.password === '' ){
-	        alert("Oops! You are not providing crendentials, please enter email and password");
-	  	}
-	  	else {
-	        alert("Please enter correct email and password");
+
+	    else{
+	        alert("Please enter details");
 	  	}
 	}
 
 	render(){
 		return (
 			<div className="main-app">
-                <Header/> 
+               	<Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
-						<h2>Login</h2>
+				   <div className="login">
+						<h2>Sign Up</h2>
 
 						<Form horizontal>
+
 						    <FormGroup controlId="formHorizontalEmail">
 						      <Col componentClass={ControlLabel} sm={2}>
 						        Email
 						      </Col>
 						      <Col sm={10}>
 						        <FormControl
-				                    type="text"
+				                    type="email"
 				                    placeholder="Enter your email" bsSize="sm" 
 				                    value={this.state.email} onChange={this.handleEmailChange.bind(this)}/>
 				                <FormControl.Feedback />
@@ -84,25 +94,24 @@ class Login extends Component {
 						        <FormControl
 				                    type="password"
 				                    placeholder="Enter your password" bsSize="sm"
-				                    value={this.state.password} onChange={this.handlePwdChange.bind(this)}/>
-				                <FormControl.Feedback />
+									value={this.state.Password} onChange={this.handlePwdChange.bind(this)} />				                <FormControl.Feedback />
 						      </Col>
 						    </FormGroup>
 
 						    <FormGroup>
 						      	<Col smOffset={2} sm={10}>
-			                		<Button type="submit" bsStyle="primary" onClick={this.handleLogin}>
-						          		Login
+			                		<Button type="submit" bsStyle="primary" onClick={this.handleSignUp}>
+						          		Sign in
 						        	</Button>
-						        	<Button href="#" bsStyle="link">forget password</Button>
 						      	</Col>
 						    </FormGroup>
   						</Form>
+
 					</div>
 				</div> 
             </div>
-        );
+		)
 	}
 }
 
-export default Login;
+export default SignUp;*/}

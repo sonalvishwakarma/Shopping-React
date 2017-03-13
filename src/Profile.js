@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
+import { Button, FormGroup,ControlLabel, Col,Form} from 'react-bootstrap';
 
 class Profile extends Component{
 	constructor(props) {

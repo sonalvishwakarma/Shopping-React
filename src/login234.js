@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+{/*import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './App.css';
@@ -43,7 +43,20 @@ class Login extends Component {
 				    password: this.state.password
 				})
 			})
-
+			.then(function(response) 
+				{ 
+					return response.json()
+					.then(function(json) {  
+					this.setState({
+						data: json
+					});
+					if(json !== ''){
+						localStorage.setItem('Token', JSON.stringify(json.token));
+						console.log(json, "Successfully Log in")    
+						alert("Successfully Log in") 
+					}
+				}.bind(this))
+			}.bind(this));
 
 	    }
 	    else if(this.state.email === '' && this.state.password === '' ){
@@ -105,4 +118,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default Login;*/}

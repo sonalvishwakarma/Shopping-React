@@ -5,14 +5,31 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
+var userApi = 'https://api.myjson.com/bins/o4zz3';
+
 class SignUp extends Component{
 	constructor(props) {
    	super(props);
+   	        this.users = [this.state];
+            this.getData();
     		this.state = {
+    			id : '',
+    			fname : '',
+    			lname : '',
     			email : '',
          	    password : '',
     		};
+
+
     	this.handleSignUp = this.handleSignUp.bind(this);
+  	}
+
+  	handleFNameChange(event) {
+    	this.setState({fname: event.target.value});
+  	}
+    
+    handleLNameChange(event) {
+    	this.setState({lname: event.target.value});
   	}
 
   	handleEmailChange(event) {
@@ -22,40 +39,63 @@ class SignUp extends Component{
     handlePwdChange(event) {
     	this.setState({password: event.target.value});
   	}
+
+  	getData(){
+       	{/*fetch(userApi)
+        .then( (response) => {
+          	return response.json()
+        })   
+        .then((users) => {
+            this.setState({
+				users : users
+			});
+		        });*/}
+    }
     
   	handleSignUp() {
 
-	    if(this.state.email !== '' && this.state.Password !== '' ){
-	    	browserHistory.push('/');
-	   		localStorage.setItem('Email', JSON.stringify(this.state.email));
-	   		localStorage.setItem('Password', JSON.stringify(this.state.password));
+	    if(this.state.fname !== '' && this.state.lname !== '' && this.state.email !== '' && this.state.Password !== '' )
+	    {
 
-	   		fetch('https://reqres.in/api/login', {
-				method: 'post',
-				headers: {
-				    'Content-Type': 'application/json'
-				  },
-				body: JSON.stringify({
-				    email: this.state.email,
-				    password: this.state.password
-				})
-			})
-			.then(function(response) 
-				{ 
-					return response.json()
+	        fetch(userApi)
+		        .then( (response) => {
+		          	return response.json()
+		        })   
+		        .then((users) => {
+		            this.setState({
+						users : users
+					});
+		        });    
+		      	fetch(userApi, {  
+			        method: 'PUT',
+			        headers: {
+			            'Accept': 'application/json',
+			            'Content-Type': 'application/json',
+			        },
+			        body: JSON.stringify({
+			            "UserID": 2 ,
+			            "FirstName": this.state.fname,
+			            "LastName": this.state.lname,
+			            "EmailID": this.state.email,
+			            "Password": this.state.password
+			        })
+		      	}).then(function(res)
+		      	{
+		      		return res.json()
 					.then(function(json) {  
 					this.setState({
-						data: json
+						users : json
 					});
 
-					if(json !== '' && JSON.parse(localStorage.getItem("Token")) !== json.token){
-					    localStorage.setItem('Token', JSON.stringify(json.token));
+					if(json !== '' && JSON.parse(localStorage.getItem("UserID")) !== json.UserID){
+					    localStorage.setItem('UserID', JSON.stringify(json.UserID));
 						console.log(json, "Successfully Sign in")   
 						alert("Successfully Sign in")
-					}	 
-				}.bind(this))
-			}.bind(this));
+						}	 
+					}.bind(this))
+				}.bind(this));
 
+		    browserHistory.push('/');
 	    }
 
 	    else{
@@ -72,6 +112,31 @@ class SignUp extends Component{
 						<h2>Sign Up</h2>
 
 						<Form horizontal>
+
+						   <FormGroup controlId="formHorizontalEmail">
+ 						      <Col componentClass={ControlLabel} sm={2}>
+ 						        First Name
+ 						      </Col>
+ 						      <Col sm={10}>
+ 						        <FormControl
+ 				                    type="text"
+ 				                    placeholder="Enter your first name" bsSize="sm" 
+ 				                    value={this.state.fname} onChange={this.handleFNameChange.bind(this)}/>
+ 				                <FormControl.Feedback />
+ 						      </Col>
+ 						    </FormGroup>
+ 
+ 						    <FormGroup controlId="formHorizontalPassword">
+ 						      <Col componentClass={ControlLabel} sm={2}>
+ 						        Last Name
+ 						      </Col>
+ 						      <Col sm={10}>
+ 						        <FormControl
+ 				                    type="text"
+ 				                    placeholder="Enter your last name" bsSize="sm"
+ 									value={this.state.lname} onChange={this.handleLNameChange.bind(this)}/>				                <FormControl.Feedback />
+ 						      </Col>
+ 						    </FormGroup>
 
 						    <FormGroup controlId="formHorizontalEmail">
 						      <Col componentClass={ControlLabel} sm={2}>

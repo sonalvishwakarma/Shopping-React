@@ -25,15 +25,15 @@ class Dashboard extends Component {
 					            </a>
 					        </Col>
 					        <Col xs={12} xs={4} md={4}>
-						        <a href="/yourCart">
-						          	<Panel header="Your Cart" footer="More Info Here" bsStyle="info">
+						        <a href="/viewCart">
+						          	<Panel header="View Cart" footer="More Info Here" bsStyle="info">
 						             	<img className="iconImg" src={product} alt="yourcart"/>
 						          	</Panel>
 						        </a>  
 					        </Col>
 					        <Col xs={12} xs={4} md={4}>
 					            <a href="/yourOrder">
-						          	<Panel header="Your order" footer="More Info Here" bsStyle="info">
+						          	<Panel header="My order" footer="More Info Here" bsStyle="info">
 						             	<img className="iconImg" src={deliveryOrder} alt="orderlist"/>
 						          	</Panel>
                                 </a>
