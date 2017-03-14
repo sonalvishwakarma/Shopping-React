@@ -23,10 +23,10 @@ class ProductDetail extends Component {
 									<Col xs={6} md={6}>
                     					<Thumbnail className="thumbnailColor">
 									        <h3>Computer</h3>
-									        <p><Glyphicon glyph="star" /> $300.20</p>
+									        <p><Glyphicon glyph="star" />Price : - $300.20</p>
 									        <p>
-									          <Button bsStyle="info">Add to cart</Button>&nbsp;
-									          <Button bsStyle="danger">Buy now</Button>
+									          	<Button bsStyle="info">Add to cart</Button>&nbsp;
+							          			<Button href="/checkout" bsStyle="default">Buy now</Button>
 									        </p>
 									    </Thumbnail>
 									</Col>

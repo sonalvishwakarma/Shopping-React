@@ -23,7 +23,7 @@ class Products extends Component {
 							    <Thumbnail rounded>
 							    	<p>
 							          <Button bsStyle="primary">Add to cart</Button>&nbsp;
-							          <Button bsStyle="default">Buy now</Button>
+							          <Button href="/checkout" bsStyle="default">Buy now</Button>
 							        </p>
 							    </Thumbnail>    
 							</Col>
@@ -35,7 +35,7 @@ class Products extends Component {
 							    <Thumbnail rounded>
 							    	<p>
 							          <Button bsStyle="primary">Add to cart</Button>&nbsp;
-							          <Button bsStyle="default">Buy now</Button>
+							          <Button href="/checkout" bsStyle="default">Buy now</Button>
 							        </p>
 							    </Thumbnail>
 							</Col>
@@ -47,7 +47,7 @@ class Products extends Component {
 							    <Thumbnail rounded>
 							    	<p>
 							          <Button bsStyle="primary">Add to cart</Button>&nbsp;
-							          <Button bsStyle="default">Buy now</Button>
+							          <Button href="/checkout" bsStyle="default">Buy now</Button>
 							        </p>
 							    </Thumbnail>
 							</Col>

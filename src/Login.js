@@ -4,12 +4,14 @@ import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
+var userApi = 'https://api.myjson.com/bins/o4zz3';
 
+var users = [];
 class Login extends Component {
 
  	constructor(props) {
    	super(props);
-		
+
 		this.state = {
 			email : '',
      	    password : ''
@@ -25,26 +27,25 @@ class Login extends Component {
     	this.setState({email: this.state.email, password: event.target.value});
   	}
 
+  	getData(){
+        fetch(userApi)
+        .then( (response) => {
+          return response.json()
+        })   
+        .then( (json) => {
+            console.log(json)
+        });
+    }
+
   	handleLogin() {
 
-	    if(this.state.email !== '' && this.state.password !== '' ){
-          console.log(this.state.email)
-	    	browserHistory.push('/');
-	    	localStorage.setItem('Email', JSON.stringify(this.state.email));
-	   		localStorage.setItem('Password', JSON.stringify(this.state.password));
+        if(this.state.email !== '' && this.state.password !== '' ){
 
-		   	fetch('https://reqres.in/api/login', {
-				method: 'post',
-				headers: {
-				    'Content-Type': 'application/json'
-				  },
-				body: JSON.stringify({
-				    email: this.state.email,
-				    password: this.state.password
-				})
-			})
-
-
+                {/* if(this.state.email === i.email &&  this.state.password === i.password){
+			    	browserHistory.push('/');
+			    	localStorage.setItem('Email', JSON.stringify(this.state.email));
+			   		localStorage.setItem('Password', JSON.stringify(this.state.password));
+			   	}*/ }
 	    }
 	    else if(this.state.email === '' && this.state.password === '' ){
 	        alert("Oops! You are not providing crendentials, please enter email and password");

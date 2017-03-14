@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row, Image, Jumbotron,Thumbnail,Glyphicon, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
+import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 import home3 from './home3.jpg';
 
 class ViewCart extends Component {
@@ -14,50 +14,85 @@ class ViewCart extends Component {
                 <div id="content" className="main-content"> 
 				   	<div className="login">
 						<h2>View Cart</h2>
-						<Jumbotron>
-	                       	<Row className="show-grid">
-								<Col xs={12} md={12}>
-									<Col xs={4} md={4}>
-	                    				<Image src={home3}  alt="imgHome" circle className="imgViewCart"/>
-									</Col>
-									<Col xs={4} md={4}>
-                    					<Thumbnail>
-									        <h3 className="wColor">Computer</h3> &nbsp; <Glyphicon glyph="star" />
-									        <p>Base CSS class and prefix for the component. Generally one should only change</p>
-									        <p className="wColor">Free delivey</p>
-
-									    </Thumbnail>
-									</Col>
-									<Col xs={4} md={4}>
-                    					<Thumbnail >
-									        <p className="wColor">Price: - $300.20
-									        	<FormGroup controlId="formHorizontalEmail">
-											      <Col componentClass={ControlLabel} sm={2}>
-											        Qty
-											      </Col>
-											      <Col sm={3}>
-											        <FormControl
-									                    type="number" value={2} bsSize="sm"/>
-									                <FormControl.Feedback />
-											      </Col>
-											    </FormGroup>
-											</p>
-											<br></br><br></br><br></br>
-
-									        <p>
-									          <Button bsStyle="info">Add to cart</Button>&nbsp;
-									          <Button bsStyle="danger">Buy now</Button>
-									        </p>
-									        <br></br>
-									        <p>
-									            <Button href="/products">Continue shopping</Button>&nbsp;
-									          	<Button bsStyle="info">Checkout</Button>
-									        </p>
-									    </Thumbnail>
-									</Col>
-								</Col>
-							</Row>
-						</Jumbotron>
+						<Table striped bordered condensed hover>
+						    <thead>
+						      <tr>
+						        <th>Product</th>
+						        <th>Description</th>
+						        <th>Price</th>
+						        <th>Quantity</th>
+						        <th>Total</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td className="width25">
+						            <Col md={12} className="wColor">
+						        		<Col  md={6}>
+						        		    <Image src={home3}  alt="imgHome" className="imgViewCart"/>
+                                         </Col>
+						        		<Col  md={6}>
+									        <h3>Computer</h3>
+									    </Col>       
+									</Col>        
+						        </td>
+						        <td className="width25">
+						            <Col md={12} className="wColor">
+						        		<Col  md={12}>
+									        <p>Base CSS class and prefix for the component. ly change</p>
+									    </Col>       
+									</Col>        
+						        </td>
+						        <td className="width15">
+						            <Col md={12} className="wColor">
+						        		<Col  md={12}>
+									        <p>Price: - $300.20</p>
+									    </Col>       
+									</Col>        
+						        </td>
+						        <td className="width15">
+						            <Col md={12} className="wColor">
+						        		<Col  md={6}>
+									        Qty
+									    </Col> 
+									    <Col md={6}>
+									        <FormControl
+							                    type="text" value={1} bsSize="sm"/>
+							                <FormControl.Feedback />
+									    </Col>       
+									</Col>        
+						        </td>
+						        <td className="width15">
+						            <Col md={12} className="wColor">
+						        		<Col  md={12}>
+									        <p>Total: - 300</p>
+									    </Col>       
+									</Col>       
+						        </td>
+						      </tr>
+						    </tbody>
+						</Table>
+						<Row className="show-grid" className="wColor">
+					      <Col mdOffset={10}>
+					           <Col md={6}>
+									Grand Total:
+							    </Col> 
+							    <Col md={6}>
+							        <FormControl
+					                    type="text" value={300} bsSize="sm"/>
+					                <FormControl.Feedback />
+							    </Col> 
+					         </Col>
+					    </Row>
+                        <br></br><br></br><br></br>
+                        <Row className="show-grid" className="wColor">
+					      <Col mdOffset={9}>
+									<span>
+							          <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
+							          <Button href="/checkout" bsStyle="danger">Checkout</Button>
+							        </span>
+					         </Col>
+					    </Row>
 					</div>
 				</div> 
             </div>

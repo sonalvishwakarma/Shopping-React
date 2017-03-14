@@ -9,6 +9,9 @@ import Profile from './Profile.js';
 import Products from './Products.js';
 import ProductDetail from './ProductDetail.js';
 import ViewCart from './ViewCart.js';
+import Checkout from './Checkout.js';
+import MyOrder from './MyOrder.js';
+
 import './index.css';
 
 ReactDOM.render(
@@ -22,6 +25,9 @@ ReactDOM.render(
 			<Route path="/Products" component={Products} />
 			<Route path="/ProductDetail" component={ProductDetail} />
 			<Route path="/ViewCart" component={ViewCart} />
+			<Route path="/Checkout" component={Checkout} />
+			<Route path="/MyOrder" component={MyOrder} />
+
 	    </Route> 
   	</Router>,
   	document.getElementById('root')

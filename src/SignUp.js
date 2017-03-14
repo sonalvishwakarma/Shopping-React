@@ -6,14 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
 var userApi = 'https://api.myjson.com/bins/o4zz3';
+var users = [];
 
 class SignUp extends Component{
 	constructor(props) {
    	super(props);
-   	        this.users = [this.state];
             this.getData();
     		this.state = {
-    			id : '',
+    			id : 0,
     			fname : '',
     			lname : '',
     			email : '',
@@ -40,32 +40,30 @@ class SignUp extends Component{
     	this.setState({password: event.target.value});
   	}
 
+  	increment(){
+  		 this.setState({
+        	id: this.state.id + 1
+    	});
+  	}
+
   	getData(){
-       	{/*fetch(userApi)
+        fetch(userApi)
         .then( (response) => {
-          	return response.json()
+          return response.json()
         })   
-        .then((users) => {
-            this.setState({
-				users : users
-			});
-		        });*/}
+        .then( (json) => {
+            users.push(json);
+        });
     }
     
   	handleSignUp() {
 
 	    if(this.state.fname !== '' && this.state.lname !== '' && this.state.email !== '' && this.state.Password !== '' )
 	    {
-
-	        fetch(userApi)
-		        .then( (response) => {
-		          	return response.json()
-		        })   
-		        .then((users) => {
-		            this.setState({
-						users : users
-					});
-		        });    
+	    	    
+                this.setState({
+		        	id: this.state.id + 1
+		    	});
 		      	fetch(userApi, {  
 			        method: 'PUT',
 			        headers: {
@@ -73,7 +71,7 @@ class SignUp extends Component{
 			            'Content-Type': 'application/json',
 			        },
 			        body: JSON.stringify({
-			            "UserID": 2 ,
+			            "UserID": this.state.id + 1 ,
 			            "FirstName": this.state.fname,
 			            "LastName": this.state.lname,
 			            "EmailID": this.state.email,
@@ -83,13 +81,13 @@ class SignUp extends Component{
 		      	{
 		      		return res.json()
 					.then(function(json) {  
-					this.setState({
-						users : json
-					});
+					 users.push(json);
+					localStorage.setItem('users', JSON.stringify(users));
+
+                    console.log(users,"post")
 
 					if(json !== '' && JSON.parse(localStorage.getItem("UserID")) !== json.UserID){
 					    localStorage.setItem('UserID', JSON.stringify(json.UserID));
-						console.log(json, "Successfully Sign in")   
 						alert("Successfully Sign in")
 						}	 
 					}.bind(this))
