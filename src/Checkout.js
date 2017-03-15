@@ -17,11 +17,11 @@ class Checkout extends Component {
 						    <Tab eventKey={1} title="Delivery Address">
 	                            <Form horizontal className="marginTop50">
 
-								   <FormGroup controlId="formHorizontalEmail">
-		 						      <Col componentClass={ControlLabel} sm={2}>
+								   <FormGroup controlId="fn">
+		 						      <Col componentClass={ControlLabel} md={2}>
 		 						        First Name
 		 						      </Col>
-		 						      <Col sm={10}>
+		 						      <Col md={10}>
 		 						        <FormControl
 		 				                    type="text"
 		 				                    placeholder="Enter your first name" bsSize="sm" />
@@ -29,22 +29,22 @@ class Checkout extends Component {
 		 						      </Col>
 		 						    </FormGroup>
 		 
-		 						    <FormGroup controlId="formHorizontalPassword">
-		 						      <Col componentClass={ControlLabel} sm={2}>
+		 						    <FormGroup controlId="ln">
+		 						      <Col componentClass={ControlLabel} md={2}>
 		 						        Last Name
 		 						      </Col>
-		 						      <Col sm={10}>
+		 						      <Col md={10}>
 		 						        <FormControl
 		 				                    type="text"
 		 				                    placeholder="Enter your last name" bsSize="sm" />				                <FormControl.Feedback />
 		 						      </Col>
 		 						    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalEmail">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="em">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Email
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="email"
 						                    placeholder="Enter your email" bsSize="sm" />
@@ -52,11 +52,11 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								     <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								     <FormGroup controlId="cn">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Contact No
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"
 						                    placeholder="Enter your contact number" bsSize="sm" />
@@ -64,11 +64,11 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="add">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Address
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"
 						                    placeholder="Enter your contact address" bsSize="sm" />
@@ -76,11 +76,11 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="city">
+								      <Col componentClass={ControlLabel} md={2}>
 								        City
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"
 						                    placeholder="Enter your city" bsSize="sm" />
@@ -88,11 +88,11 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="zip">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Zip
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"
 						                    placeholder="Enter your Zip code" bsSize="sm" />
@@ -101,7 +101,7 @@ class Checkout extends Component {
 								    </FormGroup>
 
 								    <FormGroup>
-								      	<Col smOffset={11} sm={2}>
+								      	<Col mdOffset={11} md={2}>
 					                		<Button type="submit" bsStyle="primary" eventKey={2} >
 								          		Continue
 								        	</Button>
@@ -194,10 +194,10 @@ class Checkout extends Component {
 						    	 <Form horizontal className="marginTop50">
 
 		 						    <FormGroup controlId="formControlsSelect">
-		 						      <Col componentClass={ControlLabel} sm={2}>
+		 						      <Col componentClass={ControlLabel} md={2}>
 		 						        Credit Card Type
 		 						      </Col>
-		 						      <Col sm={10}>
+		 						      <Col md={10}>
 									      <FormControl componentClass="select" placeholder="select">
 									        <option value="select">select</option>
 									        <option value="other">...</option>
@@ -205,22 +205,22 @@ class Checkout extends Component {
 		 						      </Col>
 		 						    </FormGroup>
 		 
-		 						    <FormGroup controlId="formHorizontalPassword">
-		 						      <Col componentClass={ControlLabel} sm={2}>
+		 						    <FormGroup controlId="cardn">
+		 						      <Col componentClass={ControlLabel} md={2}>
 		 						        Card Number
 		 						      </Col>
-		 						      <Col sm={10}>
+		 						      <Col md={10}>
 		 						        <FormControl
 		 				                    type="text"
 		 				                    placeholder="Enter your card number" bsSize="sm" />				                <FormControl.Feedback />
 		 						      </Col>
 		 						    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalEmail">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="noc">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Name on card
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"
 						                    placeholder="Enter card holder name" bsSize="sm" />
@@ -228,11 +228,11 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								     <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								     <FormGroup controlId="sd">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Start Date
 								      </Col>
-								      <Col sm={5}>
+								      <Col md={5}>
 								        <FormControl
 						                    type="date" bsSize="sm" value="Month"/>
 						                <FormControl.Feedback />
@@ -244,27 +244,27 @@ class Checkout extends Component {
 								      </Col>
 								    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="ed">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Expiry Date
 								      </Col>
-								      <Col sm={5}>
+								      <Col md={5}>
 								        <FormControl
 						                    type="date" bsSize="sm" value="Month"/>
 						                <FormControl.Feedback />
 								      </Col>
-								      <Col sm={5}>
+								      <Col md={5}>
 								        <FormControl
 						                    type="date" bsSize="sm" value="Year"/>
 						                <FormControl.Feedback />
 								      </Col>
 								    </FormGroup>
 
-								    <FormGroup controlId="formHorizontalPassword">
-								      <Col componentClass={ControlLabel} sm={2}>
+								    <FormGroup controlId="sc">
+								      <Col componentClass={ControlLabel} md={2}>
 								        Security code
 								      </Col>
-								      <Col sm={10}>
+								      <Col md={10}>
 								        <FormControl
 						                    type="text"  bsSize="sm" />
 						                <FormControl.Feedback />
@@ -272,7 +272,7 @@ class Checkout extends Component {
 								    </FormGroup>
 
 								    <FormGroup>
-								      	<Col smOffset={11} sm={2}>
+								      	<Col mdOffset={11} md={2}>
 					                		<Button type="submit" bsStyle="primary" eventKey={2} >
 								          		Continue
 								        	</Button>

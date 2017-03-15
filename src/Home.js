@@ -23,7 +23,7 @@ class Header extends Component {
                     <li><Link to="dashboard">Dashboard</Link></li>
                     <li><Link to="products" className="marginRight">Product</Link></li>
                    
-                    { JSON.parse(localStorage.getItem("UserID")) === '' ? 
+                    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
                         (<li><Link to="profile">Profile</Link></li>)
                         :(<li><Link to="signUp">SignUp</Link></li>)
                     }
@@ -31,7 +31,7 @@ class Header extends Component {
                        <Button type="submit" >
                         <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link></li>
 
-                    { JSON.parse(localStorage.getItem("UserID")) === '' ? 
+                    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
                         (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
                         :(<li><Link to="login">Login</Link></li>)
                     }

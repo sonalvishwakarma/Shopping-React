@@ -17,20 +17,25 @@ class Dashboard extends Component {
 				   	<div >
 						<br></br><br></br><br></br><br></br><br></br><br></br>
 					 	<div>
-					        <Col xs={12} xs={4} md={4}>
-						        <a href="/Profile">
-						        	<Panel header="Profile" footer="More Info Here" bsStyle="info">
-						             	<img className="iconImg" src={images} alt="profile"/>
-						          	</Panel>
-					            </a>
-					        </Col>
-					        <Col xs={12} xs={4} md={4}>
-						        <a href="/viewCart">
-						          	<Panel header="View Cart" footer="More Info Here" bsStyle="info">
-						             	<img className="iconImg" src={product} alt="yourcart"/>
-						          	</Panel>
-						        </a>  
-					        </Col>
+
+
+					 	    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
+						       ( <Col xs={12} xs={4} md={4}>
+							        <a href="/Profile">
+							        	<Panel header="Profile" footer="More Info Here" bsStyle="info">
+							             	<img className="iconImg" src={images} alt="profile"/>
+							          	</Panel>
+						            </a>
+						        </Col>) : null }
+
+						        <Col xs={12} xs={4} md={4}>
+							        <a href="/viewCart">
+							          	<Panel header="View Cart" footer="More Info Here" bsStyle="info">
+							             	<img className="iconImg" src={product} alt="yourcart"/>
+							          	</Panel>
+							        </a>  
+						        </Col>
+
 					        <Col xs={12} xs={4} md={4}>
 					            <a href="/myOrder">
 						          	<Panel header="My order" footer="More Info Here" bsStyle="info">

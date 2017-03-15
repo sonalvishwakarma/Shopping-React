@@ -11,23 +11,21 @@ import ProductDetail from './ProductDetail.js';
 import ViewCart from './ViewCart.js';
 import Checkout from './Checkout.js';
 import MyOrder from './MyOrder.js';
-
 import './index.css';
 
 ReactDOM.render(
 	<Router history={browserHistory} >
 	    <Route path="/">
-	       	<IndexRoute path="/" component={App} />
+	       	<IndexRoute component={App} />
 			<Route path="/Dashboard" component={Dashboard} />
 			<Route path="/Login" component={Login} />
 			<Route path="/SignUp" component={SignUp} />
 			<Route path="/Profile" component={Profile} />
-			<Route path="/Products" component={Products} />
+			<Route path="/Products" component={Products}/>
 			<Route path="/ProductDetail" component={ProductDetail} />
 			<Route path="/ViewCart" component={ViewCart} />
 			<Route path="/Checkout" component={Checkout} />
 			<Route path="/MyOrder" component={MyOrder} />
-
 	    </Route> 
   	</Router>,
   	document.getElementById('root')

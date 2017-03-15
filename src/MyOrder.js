@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row,Image,Table,FormControl, Grid, ListGroup,ListGroupItem} from 'react-bootstrap';
-import home3 from './home3.jpg';
+import { Col, Row,Table, Grid, ListGroup,ListGroupItem} from 'react-bootstrap';
 
 class ViewCart extends Component {
 
