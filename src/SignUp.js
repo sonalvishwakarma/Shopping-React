@@ -40,6 +40,10 @@ class SignUp extends Component{
 		this.setState({password: event.target.value});
 	}
 
+	 addID(){
+		    this.setState({id: this.state.id++});
+		}
+
 	increment(){
 		this.setState({
 			id: this.state.id + 1
@@ -60,10 +64,8 @@ class SignUp extends Component{
 
 		if(this.state.fname !== '' && this.state.lname !== '' && this.state.email !== '' && this.state.Password !== '' )
 		{
+		
 			
-			this.setState({
-				id: this.state.id + 1
-			});
 			fetch(userApi, {  
 				method: 'PUT',
 				headers: {
@@ -71,7 +73,7 @@ class SignUp extends Component{
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					"UserID": this.state.id + 1 ,
+					"UserID":  this.state.id,
 					"FirstName": this.state.fname,
 					"LastName": this.state.lname,
 					"EmailID": this.state.email,

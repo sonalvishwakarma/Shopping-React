@@ -22,7 +22,7 @@ ReactDOM.render(
 			<Route path="/SignUp" component={SignUp} />
 			<Route path="/Profile" component={Profile} />
 			<Route path="/Products" component={Products}/>
-			<Route path="/ProductDetail" component={ProductDetail} />
+			<Route path="/ProductDetail/:id" component={ProductDetail} />
 			<Route path="/ViewCart" component={ViewCart} />
 			<Route path="/Checkout" component={Checkout} />
 			<Route path="/MyOrder" component={MyOrder} />

@@ -6,6 +6,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button} from 'react-bootstrap';
 
+var shoppingCart = 'https://api.myjson.com/bins/he9jr';
+var mycart;
+var count;
+
 class Header extends Component {
 
     handleLogout() {
@@ -13,9 +17,32 @@ class Header extends Component {
         browserHistory.push('/');
     }
 
+    componentDidMount(){
+        this.getData()
+    }
+
+    getData(){
+        fetch(shoppingCart)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+            mycart = json
+            var array = mycart
+            if(array !== []){
+                var count = 1;
+                document.getElementById("count").innerHTML = count;
+            }
+            else {
+                var count = mycart.length;
+                document.getElementById("count").innerHTML = count;
+            }
+        });
+    }
+
     render() {
         return (
-        <div className="main-app">
+        <div className="main-app" >
             <div id="header" className="main-head"> 
                 <ul className="header">
                     <li><img src={logo} className="App-logo" alt="logo" /></li>
@@ -27,9 +54,11 @@ class Header extends Component {
                         (<li><Link to="profile">Profile</Link></li>)
                         :(<li><Link to="signUp">SignUp</Link></li>)
                     }
+
                     <li><Link to="viewCart">
-                       <Button type="submit" >
-                        <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link></li>
+                        <Button type="submit" id="count"></Button>
+                        <Button type="submit" >
+                        <img className="addtoCart" src={addtoCart} alt="addtoCart" /></Button></Link></li>
 
                     { JSON.parse(localStorage.getItem("LoggedUser")) ? 
                         (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
