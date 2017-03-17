@@ -57,8 +57,8 @@ class ViewCart extends Component {
     handledata(){
     	var _this = this;
     	this.setState({
-			viewCart : viewCart
-		})
+    			viewCart : viewCart
+    		})
     	this.state.mycart.filter(function (value) {
          	_this.state.productList.map(function (prod) {
             	if(value.ProductId === prod.ProductID){
@@ -75,8 +75,55 @@ class ViewCart extends Component {
 
 	render(){
 		const _this = this;
-		const cardItems = this.state.viewCart.map((number) =>
-			<li>{number.image}</li>
+		const cardItems = _this.state.viewCart.map((number) =>
+			
+			    <tbody>
+			       <tr key={number.ProductID}>
+			        <td className="width25">
+			            <Col md={12} className="wColor">
+			        		<Col  md={6}>
+			        		    <Image src={number.image}  alt="imgHome" className="imgViewCart"/>
+		                     </Col>
+			        		<Col  md={6}>
+						        <h3>{number.ProductName}</h3>
+						    </Col>       
+						</Col>        
+			        </td>
+			        <td className="width25">
+			            <Col md={12} className="wColor">
+			        		<Col  md={12}>
+						        <p>{number.Description}</p>
+						    </Col>       
+						</Col>        
+			        </td>
+			        <td className="width15">
+			            <Col md={12} className="wColor">
+			        		<Col  md={12}>
+						        <p>Price: -{number.SalesPrice}</p>
+						    </Col>       
+						</Col>        
+			        </td>
+			       {/* <td className="width15">
+			            <Col md={12} className="wColor">
+			        		<Col  md={6}>
+						        Qty
+						    </Col> 
+						    <Col md={6}>
+						        <FormControl
+				                    type="text" value={1} bsSize="sm" readOnly/>
+				                <FormControl.Feedback />
+						    </Col>       
+						</Col>        
+			        </td>*/}
+			        <td className="width15">
+			            <Col md={12} className="wColor">
+			        		<Col  md={12}>
+						        <p>Total: - 300</p>
+						    </Col>       
+						</Col>       
+			        </td>
+			      </tr>
+			    </tbody>
 			
 		);	
 
@@ -86,9 +133,20 @@ class ViewCart extends Component {
                 <div id="content" className="main-content"> 
 				   	<div className="login">
 						<h2>View Cart</h2>
-						 <ul>
-             			 	{cardItems}
-             			 </ul>
+						<Table striped bordered condensed hover>
+						    <thead>
+						      <tr>
+						        <th>Product</th>
+						        <th>Description</th>
+						        <th>Price</th>
+						        <th>Quantity</th>
+						        <th>Total</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+		             			 	{cardItems}
+						     </tbody> 
+						</Table>    
 							
 						<Row className="show-grid wColor">
 					      <Col mdOffset={10}>

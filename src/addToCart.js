@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+{/*import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -9,7 +9,29 @@ var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var mycart;
 
 class ViewCart extends Component {
-
+    getProducts(){
+        fetch(productApi)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+            this.setState({
+            	productList : json
+            })
+            console.log(json,"products")
+        });
+    }
+   
+    handledata(){
+    	this.state.mycart.forEach(function (value) {
+         	this.state.productList.forEach(function (prod) {
+            	if(value.ProductId === prod.ProductId){
+            		viewCart.push(prod)
+            		console.log(viewCart,"viewCart")
+            	}
+        	})
+	    })
+    }
 
 	render(){
 		return (
@@ -104,4 +126,4 @@ class ViewCart extends Component {
 	}
 }
 
-export default ViewCart;
+export default ViewCart;*/}

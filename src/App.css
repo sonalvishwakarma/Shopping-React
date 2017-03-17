@@ -1,6 +1,52 @@
-.main-app {
-  height:100%; width:100%
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: lightblue;
 }
+
+h1, h2, p, ul, li {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#header ul {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.header {
+  background-color: #111;
+  padding: 0;
+}
+ul.header li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+.content {
+  background-color: #FFF;
+  padding: 20px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 
 .thumbnailColor{
   background-color: #eee;
@@ -9,12 +55,7 @@
 }
 
 .main-head {
-  position:fixed; 
-  top:0px; 
-  left:0px;
-  height:50px; 
-  right:0px;
-  background-color: #111;
+    background-color: #111;
 }
 
 .width25{
@@ -40,23 +81,13 @@
 }
 
 .main-content {
-  top:200px; 
-  bottom:200px; 
-  left:0px; 
-  right:0px; 
   overflow:auto;
   background-color: gray;
   color: white;
-
 }
 
 .main-footer {
-  position:fixed; 
-  bottom:0px; 
   height:50px; 
-  left:0px; 
-  right:0px; 
-  overflow:hidden;
   background-color: #111;
 }
 
@@ -73,7 +104,9 @@
     height: 50px;
     overflow: hidden;
 }
-
+.products{
+  padding-top: 20px;
+}
 .product{
   text-align:center; 
   display:none;
@@ -125,7 +158,7 @@
 }
 
 .marginRight {
-    margin-right: 800px;
+    margin-right: 60%;
 }
 
 .App {
@@ -159,45 +192,4 @@
 
 .btn-link{
   color: #fff;
-}
-
-body {
-  background-color: lightblue;
-  padding: 20px;
-  margin: 0;
-}
-h1, h2, p, ul, li {
-  font-family: Helvetica, Arial, sans-serif;
-}
-ul.header li {
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-}
-ul.header {
-  background-color: #111;
-  padding: 0;
-}
-ul.header li a {
-  color: #FFF;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 20px;
-  display: inline-block;
-}
-.content {
-  background-color: #FFF;
-  padding: 20px;
-}
-.content h2 {
-  padding: 0;
-  margin: 0;
-}
-.content li {
-  margin-bottom: 10px;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
