@@ -5,11 +5,95 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table, Tabs,Tab,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
 import home3 from './home3.jpg';
 
+var userApi = 'https://api.myjson.com/bins/o4zz3';
+
 class Checkout extends Component {
 
+	constructor(props){
+		super(props);
+        this.getData();
+
+		this.state = {
+			UserDetails : {},
+			contactno : '',
+			address : '',
+			city : '',
+			zip :'',
+			users : []
+		}
+      this.handleDeliveryAdd = this.handleDeliveryAdd.bind(this);
+	}
+
+	handleContactNo(event) {
+		this.setState({contactno: event.target.value});
+	}
+	
+	handleAddress(event) {
+		this.setState({address: event.target.value});
+	}
+
+	handleCity(event) {
+		this.setState({city: event.target.value});
+	}
+	
+	handleZip(event) {
+		this.setState({zip: event.target.value});
+	}
+
+	getData(){
+		fetch(userApi)
+		.then( (response) => {
+			return response.json()
+		})   
+		.then( (json) => {
+			this.setState({
+				users : json
+			})
+		});
+	}
+
+	handleDeliveryAdd(){
+		if(this.state.contactno !== '' && this.state.address !== '' && this.state.city !== '' && this.state.zip !== '' )
+		{
+				this.state.users.push({
+					"ContactNo": this.state.contactno,
+					"Address1": this.state.address,
+					"City": this.state.city,
+					"Zip": this.state.zip
+				})
+			
+				fetch(userApi, {  
+					method: 'PUT',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(this.state.users)
+				}).then(function(res)
+				{
+					return res.json()
+					.then(function(json) {  
+
+						localStorage.setItem('users', JSON.stringify(this.state.users));
+
+						if(json !== '' && JSON.parse(localStorage.getItem("users")) ){
+							alert("Your address is saved continue with order summary")
+						}	 
+					}.bind(this))
+				}.bind(this));
+		}
+
+		else{
+			alert("Please enter required details");
+		}
+	}
+
+
 	render(){
+		this.state.UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+
 		return (
-			<div className="main-app">
+		<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
 				   	<div className="login">
@@ -22,8 +106,8 @@ class Checkout extends Component {
 		 						        First Name
 		 						      </Col>
 		 						      <Col md={10}>
-		 						        <FormControl
-		 				                    type="text"
+		 						        <FormControl disabled
+		 				                    type="text" value={this.state.UserDetails.FirstName}
 		 				                    placeholder="Enter your first name" bsSize="sm" />
 		 				                <FormControl.Feedback />
 		 						      </Col>
@@ -34,8 +118,8 @@ class Checkout extends Component {
 		 						        Last Name
 		 						      </Col>
 		 						      <Col md={10}>
-		 						        <FormControl
-		 				                    type="text"
+		 						        <FormControl disabled
+		 				                    type="text" value={this.state.UserDetails.LastName}
 		 				                    placeholder="Enter your last name" bsSize="sm" />				                <FormControl.Feedback />
 		 						      </Col>
 		 						    </FormGroup>
@@ -45,8 +129,8 @@ class Checkout extends Component {
 								        Email
 								      </Col>
 								      <Col md={10}>
-								        <FormControl
-						                    type="email"
+								        <FormControl disabled
+						                    type="email" value={this.state.UserDetails.EmailID}
 						                    placeholder="Enter your email" bsSize="sm" />
 						                <FormControl.Feedback />
 								      </Col>
@@ -58,7 +142,7 @@ class Checkout extends Component {
 								      </Col>
 								      <Col md={10}>
 								        <FormControl
-						                    type="text"
+						                    type="Number" value={this.state.contactno} onChange={this.handleContactNo.bind(this)}
 						                    placeholder="Enter your contact number" bsSize="sm" />
 						                <FormControl.Feedback />
 								      </Col>
@@ -70,7 +154,7 @@ class Checkout extends Component {
 								      </Col>
 								      <Col md={10}>
 								        <FormControl
-						                    type="text"
+						                    type="text" value={this.state.address} onChange={this.handleAddress.bind(this)}
 						                    placeholder="Enter your contact address" bsSize="sm" />
 						                <FormControl.Feedback />
 								      </Col>
@@ -82,7 +166,7 @@ class Checkout extends Component {
 								      </Col>
 								      <Col md={10}>
 								        <FormControl
-						                    type="text"
+						                    type="text" value={this.state.city} onChange={this.handleCity.bind(this)}
 						                    placeholder="Enter your city" bsSize="sm" />
 						                <FormControl.Feedback />
 								      </Col>
@@ -94,7 +178,7 @@ class Checkout extends Component {
 								      </Col>
 								      <Col md={10}>
 								        <FormControl
-						                    type="text"
+						                    type="Number" value={this.state.zip} onChange={this.handleZip.bind(this)}
 						                    placeholder="Enter your Zip code" bsSize="sm" />
 						                <FormControl.Feedback />
 								      </Col>
@@ -102,7 +186,7 @@ class Checkout extends Component {
 
 								    <FormGroup>
 								      	<Col mdOffset={11} md={2}>
-					                		<Button type="submit" bsStyle="primary" >
+					                		<Button type="submit" bsStyle="primary" onClick={this.handleDeliveryAdd} >
 								          		Continue
 								        	</Button>
 								      	</Col>

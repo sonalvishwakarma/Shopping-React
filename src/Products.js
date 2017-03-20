@@ -108,9 +108,7 @@ export class ProductInfo  extends Component {
         });
     }
 
-   handleAddToCart(){
-      	{/*var productId =  window.location.pathname.split('/').pop();
-        console.log(productId)*/}
+   handleAddToCart(selectedProduct){
 	   	if(JSON.parse(localStorage.getItem("LoggedUser")))
 	   	{
 	   		var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
@@ -125,7 +123,7 @@ export class ProductInfo  extends Component {
 				var product = {
 					CartId : json.length+1,
 					UserId : userID,
-					ProductId : 1,
+					ProductId : selectedProduct.ProductID,
 					Date : new Date()
 				}
 				
@@ -176,7 +174,7 @@ export class ProductInfo  extends Component {
 					<p><Glyphicon glyph="star" />Description : {this.props.pro.Description}</p>
 
 					<div>
-						<Button bsStyle="primary" id={this.props.pro.ProductID} onClick={this.handleAddToCart}>
+						<Button bsStyle="primary" id={this.props.pro.ProductID} >
 							Add to cart</Button>&nbsp;
 					</div> 
 				</Thumbnail> 
