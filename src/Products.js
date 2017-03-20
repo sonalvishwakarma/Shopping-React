@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row, Glyphicon, Thumbnail} from 'react-bootstrap';
-import home3 from './home3.jpg';
+import { Button, Glyphicon, Thumbnail} from 'react-bootstrap';
 import { browserHistory, Link } from 'react-router';
 
 var productApi = 'https://api.myjson.com/bins/y9d9b';
-var allProduct;
 
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var mycart = [];
+var viewCart = [];
+var mycartDetail = [];
+ var  productList = [];
 
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
@@ -79,60 +80,92 @@ var PRODUCTS = [
 
 export class ProductInfo  extends Component {
 
-	constructor(props){
-		super(props)
+		constructor(props){
+		super(props);
+     
+      this.state = {
+      	mycartDetail : [],
+        productList : []
+      }
+	
+        this.getData()
+		this.getProducts()
+
 	}
+
+	getData(){
+        fetch(shoppingCart)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+            mycartDetail = json
+        });
+    }
+
+    getProducts(){
+        fetch(productApi)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+           	productList = json
+        });
+    }
 
    handleAddToCart(){
 
-		fetch(userApi)
-		.then( (response) => {
-			return response.json()
-		})   
-		.then( (json) => {
-            this.setState({
-                users : json
-            })
-		});
+	   	if(JSON.parse(localStorage.getItem("LoggedUser")))
+	   	{
+	       fetch(shoppingCart)
+			.then( (response) => {
+				return response.json()
+			})   
+			.then( (json) => {
+
+				var product = {
+					CartId : json.length+1,
+					UserId : 1,
+					ProductId : 1,
+					Quantity : 1,
+					Date : new Date()
+				}
+				
+				json.push(product);
+
+	            	fetch(shoppingCart, {  
+						method: 'PUT',
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(json)
+					}).then(function(res)
+					{
+						return res.json()
+						.then(function(json) {  
+							mycart.push(json);
+								browserHistory.push('/products');
+								alert("Successfully product added to the cart")
+								if(mycart !== []){
+									mycartDetail.filter(function (value) {
+						         	productList.map(function (prod) {
+					            		if(value.ProductId === prod.ProductID){
+						            		viewCart.push(prod)
+						                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
+						            	}
+						        	})
+							    })
+							}
+						}.bind(this))
+					}.bind(this));
+			});
+	   	}
+	   	else {
+	   		alert("login required")
+	   	}
+   	}
 	
-   	fetch(shoppingCart)
-		.then( (response) => {
-			return response.json()
-		})   
-		.then( (json) => {
-
-			var product = {
-				CartId : json.length+1,
-				UserId : this.state.users[0].UserID,
-				ProductId : 1,
-				Quantity : 1,
-				Date : new Date()
-			}
-			
-			json.push(product);
-				localStorage.setItem('PreviouesMyCart', JSON.stringify(mycart));
-
-            	fetch(shoppingCart, {  
-					method: 'PUT',
-					headers: {
-						'Accept': 'application/json',
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(json)
-				}).then(function(res)
-				{
-					return res.json()
-					.then(function(json) {  
-						mycart.push(json);
-						localStorage.setItem('NewMyCart', JSON.stringify(mycart));
-							browserHistory.push('/viewCart');
-							alert("Successfully product added to the cart")
-					}.bind(this))
-				}.bind(this));
-
-		});
-   }
-
 	render() {
 		return (
 			<div className="col-md-4">
@@ -169,26 +202,30 @@ export class ProductData extends Component {
 	}
 };
 
-class Products extends Component {
+class Products extends Component {	
 
-	constructor(props){
-		super(props)
-		this.getProducts()
-	}
 
-	getProducts(){
-		fetch(productApi)
-		.then( (response) => {
-			return response.json() })   
-		.then( (json) => {
-			allProduct = json;
-		});
-	}	
+    handledata(){
+    	var _this = this;
+    	this.state.mycartDetail.filter(function (value) {
+         	_this.state.productList.map(function (prod) {
+            	if(value.ProductId === prod.ProductID){
+            		viewCart.push(prod)
+
+                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
+
+                        if(JSON.parse(localStorage.getItem("viewCart")) ){
+                            alert("No items in cart")
+                        }
+            	}
+        	})
+	    })
+    }
 
 	render(){
 
 		return (
-			<div className="main-app" onLoad={this.getProducts}>
+			<div className="main-app">
 				<Header/> 
 				<div id="content" className="main-content"> 
 					<div className="products">

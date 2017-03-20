@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -114,7 +114,7 @@ class ViewCart extends Component {
 				                <FormControl.Feedback />
 						    </Col>       
 						</Col>        
-			        </td>*/}
+			        </td>
 			        <td className="width15">
 			            <Col md={12} className="wColor">
 			        		<Col  md={12}>
@@ -124,8 +124,6 @@ class ViewCart extends Component {
 			        </td>
 			      </tr>
 			    </tbody>
-			
-		);	
 
 		return (
 			<div className="main-app">
@@ -156,7 +154,7 @@ class ViewCart extends Component {
 							    <Col md={6}>
 							        {/*<FormControl
 					                    type="text" value={300} bsSize="sm"/>
-					                <FormControl.Feedback />*/}
+					                <FormControl.Feedback />
 							    </Col> 
 					         </Col>
 					    </Row>
@@ -177,3 +175,125 @@ class ViewCart extends Component {
 }
 
 export default ViewCart;
+
+
+import React, { Component } from 'react';
+import Header from './Home.js';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Button, Col, Row,Image,Table} from 'react-bootstrap';
+
+var shoppingCart = 'https://api.myjson.com/bins/he9jr';
+var productApi = 'https://api.myjson.com/bins/y9d9b';
+var viewCart = [];
+
+class ViewCart extends Component {
+
+	constructor(props){
+		super(props)
+		this.state ={
+			Productquantity : '',
+            mycart : [],
+            productList : [],
+            viewCart : []
+		};
+		this.getData()
+		this.getProducts()
+
+		this.handledata = this.handledata.bind(this)
+	}
+
+    getData(){
+        fetch(shoppingCart)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+            this.setState({
+            	mycart : json
+            })
+            console.log(json,"cart")
+        });
+    }
+
+    getProducts(){
+        fetch(productApi)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then( (json) => {
+            this.setState({
+            	productList : json
+            })
+            console.log(json,"products")
+        });
+    }
+
+    componentDidMount() {
+        setTimeout( this.handledata, 1000 );
+    }
+   
+    handledata(){
+    	var _this = this;
+    	this.setState({
+			viewCart : viewCart
+		})
+    	this.state.mycart.filter(function (value) {
+         	_this.state.productList.map(function (prod) {
+            	if(value.ProductId === prod.ProductID){
+            		_this.state.viewCart.push(prod)
+            		console.log(viewCart,"viewCart")
+            	}
+        	})
+	    })
+    }
+
+    handleProductQty(event) {
+		this.setState({Productquantity: event.target.value});
+	}
+
+	render(){
+
+		const cardItems = this.state.viewCart.map((number) =>
+			<li>{number.image}</li>
+        );    
+		return (
+			<div className="main-app">
+                <Header/> 
+                <div id="content" className="main-content"> 
+				   	<div className="login">
+						<h2>View Cart</h2>
+						 <ul>
+             			 	{cardItems}
+             			 </ul>
+							
+						<Row className="show-grid wColor">
+					      <Col mdOffset={10}>
+					           <Col md={6}>
+									Grand Total:
+							    </Col> 
+							    <Col md={6}>
+							        {/*<FormControl
+					                    type="text" value={300} bsSize="sm"/>
+					                <FormControl.Feedback />
+							    </Col> 
+					         </Col>
+					    </Row>
+                        <br></br><br></br><br></br>
+                        <Row className="show-grid wColor">
+					      <Col mdOffset={9}>
+									<span>
+							          <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
+							          <Button href="/checkout" bsStyle="danger">Checkout</Button>
+							        </span>
+					         </Col>
+					    </Row>
+					</div>
+				</div> 
+            </div>
+        );
+	}
+}
+
+export default ViewCart;
+*/}

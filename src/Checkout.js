@@ -102,7 +102,7 @@ class Checkout extends Component {
 
 								    <FormGroup>
 								      	<Col mdOffset={11} md={2}>
-					                		<Button type="submit" bsStyle="primary" eventKey={2} >
+					                		<Button type="submit" bsStyle="primary" >
 								          		Continue
 								        	</Button>
 								      	</Col>
@@ -273,7 +273,7 @@ class Checkout extends Component {
 
 								    <FormGroup>
 								      	<Col mdOffset={11} md={2}>
-					                		<Button type="submit" bsStyle="primary" eventKey={2} >
+					                		<Button type="submit" bsStyle="primary" >
 								          		Continue
 								        	</Button>
 								      	</Col>

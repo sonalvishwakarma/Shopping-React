@@ -2,93 +2,81 @@ import React, { Component } from 'react';
 import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row,Image,Table} from 'react-bootstrap';
+import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 
-var shoppingCart = 'https://api.myjson.com/bins/he9jr';
-var productApi = 'https://api.myjson.com/bins/y9d9b';
 var viewCart = [];
 
 class ViewCart extends Component {
 
 	constructor(props){
-		super(props)
-		this.state ={
-			Productquantity : '',
-            mycart : [],
-            productList : [],
-            viewCart : []
-		};
-		this.getData()
-		this.getProducts()
-
-		this.handledata = this.handledata.bind(this)
-	}
-
-    getData(){
-        fetch(shoppingCart)
-        .then( (response) => {
-            return response.json()
-        })   
-        .then( (json) => {
-            this.setState({
-            	mycart : json
-            })
-            console.log(json,"cart")
-        });
-    }
-
-    getProducts(){
-        fetch(productApi)
-        .then( (response) => {
-            return response.json()
-        })   
-        .then( (json) => {
-            this.setState({
-            	productList : json
-            })
-            console.log(json,"products")
-        });
-    }
-
-    componentDidMount() {
-        setTimeout( this.handledata, 1000 );
-    }
-   
-    handledata(){
-    	var _this = this;
-    	this.setState({
-			viewCart : viewCart
-		})
-    	this.state.mycart.filter(function (value) {
-         	_this.state.productList.map(function (prod) {
-            	if(value.ProductId === prod.ProductID){
-            		_this.state.viewCart.push(prod)
-            		console.log(viewCart,"viewCart")
-            	}
-        	})
-	    })
-    }
-
-    handleProductQty(event) {
-		this.setState({Productquantity: event.target.value});
+		super(props);
 	}
 
 	render(){
-		const _this = this;
-		const cardItems = this.state.viewCart.map((number) =>
-			<li>{number.image}</li>
-			
-		);	
-
+        const MyCart = JSON.parse(localStorage.getItem("viewCart"));
+		const cardItems = MyCart.map((number) =>
+            <tbody key={number}>
+                <td className="width25">
+                    <Col md={12} className="wColor">
+                        <Col md={6}>
+                            <Image src={number.image}  alt="imgHome" className="imgViewCart"/>
+                         </Col>
+                        <Col  md={6}>
+                            <h3>{number.ProductName}</h3>
+                        </Col>       
+                    </Col>        
+                </td>
+                <td className="width25">
+                    <Col md={12} className="wColor">
+                        <Col  md={12}>
+                            <p>{number.Description}</p>
+                        </Col>       
+                    </Col>        
+                </td>
+                <td className="width15">
+                    <Col md={12} className="wColor">
+                        <Col  md={12}>
+                            <p>Price: -{number.SalesPrice}</p>
+                        </Col>       
+                    </Col>        
+                </td>
+                <td className="width15">
+                    <Col md={12} className="wColor">
+                        <Col md={6}>
+                            Qty
+                        </Col> 
+                        <Col md={6}>
+                            <FormControl
+                                type="Number" defaultValue={number.Productquantity} min="1" bsSize="sm"/>
+                            <FormControl.Feedback />
+                        </Col>      
+                    </Col>        
+                </td>
+                <td className="width15">
+                    <Col md={12} className="wColor">
+                        <Col  md={12}>
+                            <p>Total: - 300</p>
+                        </Col>       
+                    </Col>       
+                </td>
+            </tbody>
+        );    
 		return (
-			<div className="main-app">
+			<div className="main-app" onLoad={this.handledata}>
                 <Header/> 
                 <div id="content" className="main-content"> 
 				   	<div className="login">
 						<h2>View Cart</h2>
-						 <ul>
-             			 	{cardItems}
-             			 </ul>
+						<Table striped bordered condensed hover>
+                            <thead>
+                              <tr>
+                                <th>my cart</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                    {cardItems}
+                             </tbody> 
+                        </Table>      
 							
 						<Row className="show-grid wColor">
 					      <Col mdOffset={10}>
