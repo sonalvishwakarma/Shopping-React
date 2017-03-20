@@ -4,7 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 
-var viewCart = [];
+var MyCart;
 
 class ViewCart extends Component {
 
@@ -12,8 +12,14 @@ class ViewCart extends Component {
 		super(props);
 	}
 
+    totalPrice(){
+      MyCart.forEach(function(v) {
+          var quantity = v.Productquantity;
+      })
+    }
+
 	render(){
-        const MyCart = JSON.parse(localStorage.getItem("viewCart"));
+        MyCart = JSON.parse(localStorage.getItem("viewCart"));
 		const cardItems = MyCart.map((number) =>
             <tbody key={number}>
                 <td className="width25">
@@ -46,8 +52,8 @@ class ViewCart extends Component {
                             Qty
                         </Col> 
                         <Col md={6}>
-                            <FormControl
-                                type="Number" defaultValue={number.Productquantity} min="1" bsSize="sm"/>
+                            <FormControl disabled
+                                type="text" defaultValue={number.Productquantity} bsSize="sm"/>
                             <FormControl.Feedback />
                         </Col>      
                     </Col>        
@@ -55,7 +61,7 @@ class ViewCart extends Component {
                 <td className="width15">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>Total: - 300</p>
+                            <p>Total: - {number.Productquantity * number.SalesPrice}</p>
                         </Col>       
                     </Col>       
                 </td>
@@ -84,9 +90,9 @@ class ViewCart extends Component {
 									Grand Total:
 							    </Col> 
 							    <Col md={6}>
-							        {/*<FormControl
-					                    type="text" value={300} bsSize="sm"/>
-					                <FormControl.Feedback />*/}
+							        <FormControl disabled
+					                    type="text" value={160000} bsSize="sm"/>
+					                <FormControl.Feedback />
 							    </Col> 
 					         </Col>
 					    </Row>

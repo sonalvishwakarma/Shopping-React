@@ -17,16 +17,13 @@ class Dashboard extends Component {
 				   	<div >
 						<br></br><br></br><br></br><br></br><br></br><br></br>
 					 	<div>
-
-
-					 	    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
-						       ( <Col xs={12} xs={4} md={4}>
+						       <Col xs={12} xs={4} md={4}>
 							        <a href="/Profile">
 							        	<Panel header="Profile" footer="More Info Here" bsStyle="info">
 							             	<img className="iconImg" src={images} alt="profile"/>
 							          	</Panel>
 						            </a>
-						        </Col>) : null }
+						        </Col>
 
 						        <Col xs={12} xs={4} md={4}>
 							        <a href="/viewCart">

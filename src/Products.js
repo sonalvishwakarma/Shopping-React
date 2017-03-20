@@ -11,7 +11,8 @@ var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var mycart = [];
 var viewCart = [];
 var mycartDetail = [];
- var  productList = [];
+var productList = [];
+var userID;
 
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
@@ -20,9 +21,8 @@ var PRODUCTS = [
     "ProductID": 1,
     "ProductName": "Vu 80cm (32) HD Ready LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
-    "SalesPrice": "16000",
-    "DiscountPrice": "13000",
-    "Productquantity": 10,
+    "SalesPrice": "160000",
+    "Productquantity": 1,
     "ProductType": "TV",
     "Description": "This is very good tv"
   },
@@ -30,9 +30,8 @@ var PRODUCTS = [
     "ProductID": 2,
     "ProductName": "Vu 100cm (42) HD Ready LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
-    "SalesPrice": "25000",
-    "DiscountPrice": "21000",
-    "Productquantity": 10,
+    "SalesPrice": "45000",
+    "Productquantity": 1,
     "ProductType": "TV",
     "Description": "This is very good tv"
   },
@@ -40,8 +39,7 @@ var PRODUCTS = [
     "ProductID": 3,
     "ProductName": "Vu 120cm (52) HD Ready LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
-    "SalesPrice": "45000",
-    "DiscountPrice": "41000",
+    "SalesPrice": "55000",
     "Productquantity": 10,
     "ProductType": "TV",
     "Description": "This is very good tv"
@@ -51,28 +49,25 @@ var PRODUCTS = [
     "ProductName": "Vu 150cm (62) HD Ready LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
     "SalesPrice": "65000",
-    "DiscountPrice": "61000",
-    "Productquantity": 10,
+    "Productquantity": 1,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "This is very good tv with amazing graphics"
   },
   {
     "ProductID": 5,
     "ProductName": "Vu 20cm (21) HD Ready LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
-    "SalesPrice": "6000",
-    "DiscountPrice": "5000",
-    "Productquantity": 10,
+    "SalesPrice": "80000",
+    "Productquantity": 1,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "This is very good tv with HD features"
   },
   {
     "ProductID": 6,
-    "ProductName": "Vu 20cm (21) HD Ready LED TV",
+    "ProductName": "Vu 20cm (21) HD LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
     "SalesPrice": "6000",
-    "DiscountPrice": "5000",
-    "Productquantity": 10,
+    "Productquantity": 1,
     "ProductType": "TV",
     "Description": "This is very good tv"
   }
@@ -80,7 +75,7 @@ var PRODUCTS = [
 
 export class ProductInfo  extends Component {
 
-		constructor(props){
+	constructor(props){
 		super(props);
      
       this.state = {
@@ -114,10 +109,14 @@ export class ProductInfo  extends Component {
     }
 
    handleAddToCart(){
-
+      	{/*var productId =  window.location.pathname.split('/').pop();
+        console.log(productId)*/}
 	   	if(JSON.parse(localStorage.getItem("LoggedUser")))
 	   	{
-	       fetch(shoppingCart)
+	   		var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+	   			userID =  UserDetails.UserID;
+
+	       	fetch(shoppingCart)
 			.then( (response) => {
 				return response.json()
 			})   
@@ -125,9 +124,8 @@ export class ProductInfo  extends Component {
 
 				var product = {
 					CartId : json.length+1,
-					UserId : 1,
+					UserId : userID,
 					ProductId : 1,
-					Quantity : 1,
 					Date : new Date()
 				}
 				
@@ -142,27 +140,28 @@ export class ProductInfo  extends Component {
 						body: JSON.stringify(json)
 					}).then(function(res)
 					{
-						return res.json()
-						.then(function(json) {  
-							mycart.push(json);
-								browserHistory.push('/products');
-								alert("Successfully product added to the cart")
-								if(mycart !== []){
-									mycartDetail.filter(function (value) {
-						         	productList.map(function (prod) {
-					            		if(value.ProductId === prod.ProductID){
-						            		viewCart.push(prod)
-						                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
-						            	}
-						        	})
-							    })
-							}
-						}.bind(this))
-					}.bind(this));
+					return res.json()
+					.then(function(json) {  
+						mycart.push(json);
+							browserHistory.push('/products');
+							alert("Successfully product added to the cart")
+							if(mycart !== []){
+								mycartDetail.filter(function (value) {
+					         	productList.map(function (prod) {
+				            		if(value.ProductId === prod.ProductID){
+					            		viewCart.push(prod)
+					                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
+					            	}
+					        	})
+						    })
+						}
+					}.bind(this))
+				}.bind(this));
 			});
 	   	}
 	   	else {
 	   		alert("login required")
+	   		browserHistory.push('/login');
 	   	}
    	}
 	
@@ -174,13 +173,11 @@ export class ProductInfo  extends Component {
 						<h3>{this.props.pro.ProductName}</h3>
 					</Link>	
 					<p><Glyphicon glyph="star" />Sales Price : {this.props.pro.SalesPrice}</p>
-					<p><Glyphicon glyph="star" />Discount Price : {this.props.pro.DiscountPrice}</p>
 					<p><Glyphicon glyph="star" />Description : {this.props.pro.Description}</p>
 
 					<div>
-						<Button bsStyle="primary"  id={this.props.pro.ProductID} onClick={this.handleAddToCart}>
+						<Button bsStyle="primary" id={this.props.pro.ProductID} onClick={this.handleAddToCart}>
 							Add to cart</Button>&nbsp;
-						<Button href="/checkout" bsStyle="default">Buy now</Button>
 					</div> 
 				</Thumbnail> 
 			</div>	
@@ -204,7 +201,6 @@ export class ProductData extends Component {
 
 class Products extends Component {	
 
-
     handledata(){
     	var _this = this;
     	this.state.mycartDetail.filter(function (value) {
@@ -213,10 +209,6 @@ class Products extends Component {
             		viewCart.push(prod)
 
                     localStorage.setItem('viewCart', JSON.stringify(viewCart));
-
-                        if(JSON.parse(localStorage.getItem("viewCart")) ){
-                            alert("No items in cart")
-                        }
             	}
         	})
 	    })

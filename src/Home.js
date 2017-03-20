@@ -28,7 +28,7 @@ class Header extends Component {
         .then( (json) => {
             mycart = json
             
-            if(mycart !== []){
+            if(mycart && mycart !== []){
                 var count = mycart.length;
                 document.getElementById("count").innerHTML = count;
             }
@@ -42,13 +42,20 @@ class Header extends Component {
                 <ul className="header">
                     <li><img src={logo} className="App-logo" alt="logo" /></li>
                     <li><Link href="/">Home</Link></li>
-                    <li><Link to="dashboard">Dashboard</Link></li>
-                    <li><Link to="products" className="marginRight">Product</Link></li>
 
-                    <li><Link to="viewCart">
+                    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                    (<li><Link to="dashboard">Dashboard</Link></li>)
+                     : null }
+
+                    <li><Link to="products" className="marginRight">Product</Link></li>
+                    
+                    { JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                    (<li><Link to="viewCart">
                         <Button type="submit" id="count"></Button>
                         <Button type="submit" >
-                        <img className="addtoCart" src={addtoCart} alt="addtoCart" /></Button></Link></li>
+                        <img className="addtoCart" src={addtoCart} alt="addtoCart" /></Button></Link></li>)
+                     : null }
+                    
 
                     { JSON.parse(localStorage.getItem("LoggedUser")) ? 
                         (<li><Link to="profile">Profile</Link></li>)

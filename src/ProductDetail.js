@@ -6,7 +6,6 @@ import { Button, Col, Row, Image, Jumbotron,Thumbnail,Glyphicon} from 'react-boo
 
 var productApi = 'https://api.myjson.com/bins/y9d9b';
 
-
 class ProductDetail extends Component {
 
 	constructor(props){
