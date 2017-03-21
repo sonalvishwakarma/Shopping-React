@@ -3,32 +3,96 @@ import Header from './Home.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
+var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 
-var MyCart;
+var allCartData = [];
 
 class ViewCart extends Component {
 
 	constructor(props){
 		super(props);
+        this.state = {
+            cart : [],
+            grandTotal : 0
+        }
 	}
 
-    totalPrice(){
-      MyCart.forEach(function(v) {
-          var quantity = v.Productquantity;
-      })
+    componentDidMount(){
+        
+        this.getShppingCart();
+    }
+
+    getShppingCart(){
+        fetch(shoppingCart)
+        .then( (response) => {
+            return response.json()
+        })   
+        .then(function(json){
+            allCartData = json;
+            var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+            var userID =  UserDetails.UserID;
+            
+            var usersCart = json.filter(function(pro){
+                return pro.UserId == userID;
+            })
+
+            var total = 0;
+            usersCart.map((cart) => {
+                total = total + parseInt(cart.Price);
+            })
+
+            this.setState({
+              cart: usersCart,
+              grandTotal : total
+            });
+        }.bind(this));
+
+    }
+
+    removeCart(cart){
+
+        allCartData.forEach(function(car, index){
+            if(car.CartId == cart.CartId){
+                var carts = allCartData.slice(index);
+                 fetch(shoppingCart, {  
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(carts)
+                }).then(function(){
+                    alert("Successfully deleted the product from your cart");
+                    this.getShppingCart();
+                }.bind(this))
+            }
+        }.bind(this))
+        /*var index = allCartData.indexOf(cart);
+       
+
+        fetch(shoppingCart, {  
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(carts)
+        }).then(function(){
+            alert("Successfully deleted the product from your cart");
+            this.getShppingCart();
+        }.bind(this))*/
     }
 
 	render(){
-        MyCart = JSON.parse(localStorage.getItem("viewCart"));
-		const cardItems = MyCart.map((number) =>
-            <tbody key={number}>
+        const cardItems = this.state.cart.map((number) =>
+            <tr key={number.CartId}>
                 <td className="width25">
                     <Col md={12} className="wColor">
                         <Col md={6}>
-                            <Image src={number.image}  alt="imgHome" className="imgViewCart"/>
+                            <Image src={number.Image}  alt="imgHome" className="imgViewCart"/>
                          </Col>
                         <Col  md={6}>
-                            <h3>{number.ProductName}</h3>
+                            <h5>{number.ProductName}</h5>
                         </Col>       
                     </Col>        
                 </td>
@@ -42,7 +106,7 @@ class ViewCart extends Component {
                 <td className="width15">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>Price: -{number.SalesPrice}</p>
+                            <p>Price: - {number.Price}</p>
                         </Col>       
                     </Col>        
                 </td>
@@ -53,62 +117,68 @@ class ViewCart extends Component {
                         </Col> 
                         <Col md={6}>
                             <FormControl disabled
-                                type="text" defaultValue={number.Productquantity} bsSize="sm"/>
+                                type="text" defaultValue={number.Quantity} bsSize="sm"/>
                             <FormControl.Feedback />
+
+                            <Button  onClick={this.removeCart.bind(this, number)}>
+                            Remove</Button>
+
                         </Col>      
                     </Col>        
                 </td>
                 <td className="width15">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>Total: - {number.Productquantity * number.SalesPrice}</p>
+                            <p>Total: - {number.Quantity * number.Price}</p>
                         </Col>       
                     </Col>       
                 </td>
-            </tbody>
+            </tr>
         );    
-		return (
-			<div className="main-app" onLoad={this.handledata}>
+        return (
+            <div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
-						<h2>View Cart</h2>
-						<Table striped bordered condensed hover>
+                    <div className="login">
+                        <h2>View Cart</h2>
+                        <Table striped bordered condensed hover>
                             <thead>
                               <tr>
-                                <th>my cart</th>
+                                <th colSpan="5">My cart</th>
                               </tr>
                             </thead>
                             <tbody>
                                     {cardItems}
                              </tbody> 
                         </Table>      
-							
-						<Row className="show-grid wColor">
-					      <Col mdOffset={10}>
-					           <Col md={6}>
-									Grand Total:
-							    </Col> 
-							    <Col md={6}>
-							        <FormControl disabled
-					                    type="text" value={160000} bsSize="sm"/>
-					                <FormControl.Feedback />
-							    </Col> 
-					         </Col>
-					    </Row>
+                            
+                        <Row className="show-grid wColor">
+                          <Col mdOffset={10}>
+                               <Col md={6}>
+                                    Grand Total:
+                                </Col> 
+                                <Col md={6}>
+                                    <FormControl disabled
+                                        type="text" value={this.state.grandTotal} bsSize="sm"/>
+                                    <FormControl.Feedback />
+                                </Col> 
+                             </Col>
+                        </Row>
                         <br></br><br></br><br></br>
                         <Row className="show-grid wColor">
-					      <Col mdOffset={9}>
-									<span>
-							          <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
-							          <Button href="/checkout" bsStyle="danger">Checkout</Button>
-							        </span>
-					         </Col>
-					    </Row>
-					</div>
-				</div> 
+                          <Col mdOffset={9}>
+                                    <span>
+                                      <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
+                                      <Button href="/checkout" bsStyle="danger">Checkout</Button>
+                                    </span>
+                             </Col>
+                        </Row>
+                    </div>
+                </div> 
             </div>
         );
+
+		
 	}
 }
 

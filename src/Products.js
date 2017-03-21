@@ -124,7 +124,12 @@ export class ProductInfo  extends Component {
 					CartId : json.length+1,
 					UserId : userID,
 					ProductId : selectedProduct.ProductID,
-					Date : new Date()
+					ProductName : selectedProduct.ProductName,
+					Price : selectedProduct.SalesPrice,
+					Image : selectedProduct.image,
+					Quantity : 1,
+					Date : new Date(),
+					Description : selectedProduct.Description
 				}
 				
 				json.push(product);
@@ -139,20 +144,8 @@ export class ProductInfo  extends Component {
 					}).then(function(res)
 					{
 					return res.json()
-					.then(function(json) {  
-						mycart.push(json);
-							browserHistory.push('/products');
-							alert("Successfully product added to the cart")
-							if(mycart !== []){
-								mycartDetail.filter(function (value) {
-					         	productList.map(function (prod) {
-				            		if(value.ProductId === prod.ProductID){
-					            		viewCart.push(prod)
-					                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
-					            	}
-					        	})
-						    })
-						}
+					.then(function(json) {
+						alert("Successfully product added to the cart");
 					}.bind(this))
 				}.bind(this));
 			});
@@ -174,7 +167,7 @@ export class ProductInfo  extends Component {
 					<p><Glyphicon glyph="star" />Description : {this.props.pro.Description}</p>
 
 					<div>
-						<Button bsStyle="primary" id={this.props.pro.ProductID} >
+						<Button bsStyle="primary" onClick={this.handleAddToCart.bind(this, this.props.pro)}>
 							Add to cart</Button>&nbsp;
 					</div> 
 				</Thumbnail> 
