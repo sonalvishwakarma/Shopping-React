@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row, Image, Jumbotron,Thumbnail,Glyphicon} from 'react-bootstrap';
 
@@ -14,7 +14,7 @@ class ProductDetail extends Component {
 		this.state ={
             product : []
 		};
-		var productId = this.props.location.pathname.split('/').pop();
+		var productId = JSON.parse(this.props.location.pathname.split('/').pop());
 		this.getData(productId)
 	}
 
@@ -25,7 +25,7 @@ class ProductDetail extends Component {
         })   
         .then( (json) => {
         	var product = json.find(function(pro){
-        		return pro.ProductID == productId;
+        		return pro.ProductID === productId;
         	})
             this.setState({
             	product : product
@@ -49,13 +49,10 @@ class ProductDetail extends Component {
 									<Col xs={6} md={6}>
                     					<Thumbnail className="thumbnailColor">
 									        <h3>{this.state.product.ProductName}</h3>
-									       <p><Glyphicon glyph="star" />Sales Price : {this.state.product.SalesPrice}</p>
-											<p><Glyphicon glyph="star" />Discount Price : {this.state.product.DiscountPrice}</p>
-											<p><Glyphicon glyph="star" />Description : {this.state.product.Description}</p>
-									        <p>
-									          	<Button bsStyle="info">Add to cart</Button>&nbsp;
-							          			<Button href="/checkout" bsStyle="default">Buy now</Button>
-									        </p>
+									        <p><Glyphicon glyph="star" /><Glyphicon glyph="star" />
+									        <Glyphicon glyph="star" /><Glyphicon glyph="star" /><Glyphicon glyph="star" /></p>
+									        <p>Description : {this.state.product.Description}</p>
+									       	<p>Price : {this.state.product.SalesPrice}</p>FREE Delivery within 2-3 business days
 									    </Thumbnail>
 									</Col>
 								</Col>

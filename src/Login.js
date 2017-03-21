@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
+import {Button, FormGroup, ControlLabel, FormControl, Col, Form} from 'react-bootstrap';
 
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
@@ -63,7 +63,7 @@ class Login extends Component {
             }
         }
 
-    	        render(){
+    	render(){
             return (
                 <div className="main-app">
                     <Header/> 
@@ -105,7 +105,7 @@ class Login extends Component {
                                 </Col>
                             </FormGroup>
                         </Form>
-                     </div>
+                    </div>
                 </div> 
             </div>
         );

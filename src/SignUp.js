@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
@@ -11,6 +11,7 @@ class SignUp extends Component{
 	constructor(props) {
 		super(props);
 		this.getData();
+
 		this.state = {
 			id : 0,
 			fname : '',
@@ -80,14 +81,8 @@ class SignUp extends Component{
 				{
 					return res.json()
 					.then(function(json) {  
-
-						localStorage.setItem('users', JSON.stringify(this.state.users));
-
-						if(json !== '' && JSON.parse(localStorage.getItem("users")) ){
-							alert("Successfully Sign in")
-							browserHistory.push('/Login');
-
-						}	 
+						alert("Successfully Sign in")
+						browserHistory.push('/Login');
 					}.bind(this))
 				}.bind(this));
 			}
@@ -108,7 +103,6 @@ class SignUp extends Component{
 				<div id="content" className="main-content"> 
 					<div className="login">
 					<h2>Sign Up</h2>
-
 						<Form horizontal>
 
 							<FormGroup controlId="fn">
@@ -183,8 +177,7 @@ class SignUp extends Component{
             						</Button>
         						</Col>
         					</FormGroup>
-					   </Form>
-
+					   	</Form>
 				    </div>
 			    </div> 
 		    </div>

@@ -1,82 +1,45 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Col, Row,Table, Grid, ListGroup,ListGroupItem, FormControl} from 'react-bootstrap';
+import { Button, Col, Row,Image,Table, Tabs,Tab,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
+var userApi = 'https://api.myjson.com/bins/o4zz3';
+var UserDetails ={};
 
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
 
-class MyOrder extends Component {
+class OrderSummary extends Component {
+
+	orderSave(){
+		var uniqueID = new Date().getTime();
+		localStorage.setItem('orderNumber', JSON.stringify(uniqueID));
+		alert("your order details is saved check your Confirmation")
+
+	}
 
 	render(){
 		var orderNumbers = JSON.parse(localStorage.getItem("orderNumber")) 
-		var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
-
-		var dateObj = new Date();
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
-		var day = dateObj.getUTCDate();
-		var year = dateObj.getUTCFullYear();
-
-		var newdate =  day+ "/" + month + "/" + year;
-
 		return (
-			<div className="main-app">
+		<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
 				   	<div className="login">
-					   	<Grid>
-						    <Row className="show-grid">
-						      <Col md={9}><h2>Invoice</h2></Col>
-						      <Col md={3}><h2>Order#{orderNumbers}</h2></Col>
-						    </Row>
-						</Grid>    
-						<hr></hr>
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={10}>
-						      	<h4>Billed To</h4>
-						      	<p>{UserDetails.Address1}</p>
-						      	<p>Bangalore(KA)</p>
-						      </Col>
-						      <Col xs={6} md={2}>
-						      	<h4>Shipped To</h4>
-						      	<p>{UserDetails.Address1}</p>
-	                            <p>Bangalore(KA)</p>
-						      </Col>
-						    </Row>
-						</Grid>
-
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={10}>
-						      	<h4>Payment Method</h4>
-						      	<p>visa ending***4258</p>
-						      	<p>{UserDetails.EmailID}</p>
-						      </Col>
-						      <Col xs={6} md={2}>
-						      	<h4>Order Date</h4>
-						      	<p>{newdate}</p>
-						      </Col>
-						    </Row>
-						</Grid> 
-
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={12}>
-						      	<ListGroup>
-								    <ListGroupItem  active>Order Summary</ListGroupItem>
-								    	 <ViewCart/>  
-								  </ListGroup>
-						      </Col>
-						    </Row>
-						</Grid> 
-					</div>		
+				        <ViewCart/>
+				        <FormGroup>
+					      	<Col mdOffset={11} md={2}>
+		                		<Button type="submit" bsStyle="primary" onClick={this.orderSave.bind(this)}>
+					          		Save and continue
+					        	</Button>
+					      	</Col>
+						</FormGroup>
+					</div>
 				</div> 
             </div>
         );
 	}
-} 
+}
 
 export class ViewCart extends Component {
 
@@ -99,8 +62,8 @@ export class ViewCart extends Component {
         })   
         .then(function(json){
             allCartData = json;
-            var getUserId = JSON.parse(localStorage.getItem("LoggedUser"))
-            var userID =  getUserId.UserID;
+            var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+            var userID =  UserDetails.UserID;
             
             var usersCart = json.filter(function(pro){
                 return pro.UserId === userID;
@@ -121,11 +84,20 @@ export class ViewCart extends Component {
 	render(){
         const cardItems = this.state.cart.map((number) =>
             <tr key={number.CartId}>
-
+                <td className="width25">
+                    <Col md={12} className="wColor">
+                        <Col md={6}>
+                            <Image src={number.Image}  alt="imgHome" className="imgViewCart"/>
+                         </Col>
+                        <Col  md={6}>
+                            <h5>{number.ProductName}</h5>
+                        </Col>       
+                    </Col>        
+                </td>
                 <td className="width25">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>{number.ProductName}</p>
+                            <p>{number.Description}</p>
                         </Col>       
                     </Col>        
                 </td>
@@ -162,14 +134,14 @@ export class ViewCart extends Component {
                 <Table responsive>
                     <thead>
                         <tr>
-                        <th colSpan="5">#</th>
+                        <th colSpan="5">My cart</th>
                         </tr>
                     </thead>
                         <tbody>
                             {cardItems}
                         </tbody> 
                 </Table>      
-                 <hr></hr>   
+                    
                 <Row className="show-grid wColor">
                   <Col mdOffset={10}>
                        <Col md={6}>
@@ -187,4 +159,4 @@ export class ViewCart extends Component {
 	}
 }
 
-export default MyOrder;
+export default OrderSummary;

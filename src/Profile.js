@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, FormGroup,ControlLabel, FormControl,Col,Form} from 'react-bootstrap';
+import { FormGroup,ControlLabel,Col,Form} from 'react-bootstrap';
 
 class Profile extends Component{
 	constructor(props) {
@@ -43,33 +43,29 @@ class Profile extends Component{
 						<h2>My Profile</h2>
 
 						<Form horizontal>
-
+                            {/*<span></span>*/}
 						    <FormGroup controlId="firstName">
 						      <Col componentClass={ControlLabel} sm={2}>
 						        First Name  :
 						      </Col>
 						      <Col sm={10}>
-
-						         <p id="fname"></p>
-
-						        {/*<FormControl
-				                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
-				                     onChange={this.handleFirstName}/>
+						        <p id="fname"></p>
+						        	{/*<FormControl
+					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
-                             <FormGroup controlId="lastName">
+                            <FormGroup controlId="lastName">
 						      <Col componentClass={ControlLabel} sm={2}>
 						        Last Name  :
 						      </Col>
 						      <Col sm={10}>
-
-						         <p id="lname"></p>
-
-						        {/*<FormControl
-				                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
-				                     onChange={this.handleFirstName}/>
+						        <p id="lname"></p>
+						        	{/*<FormControl
+					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
@@ -79,12 +75,10 @@ class Profile extends Component{
 						        Email  :
 						      </Col>
 						      <Col sm={10}>
-
 						      	 <p id="emailid"></p>
-
-						        {/*<FormControl
-				                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
-				                     onChange={this.handleFirstName}/>
+						        	{/*<FormControl
+					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
@@ -95,17 +89,16 @@ class Profile extends Component{
 						        Password  :
 						      </Col>
 						      <Col sm={10}>
-						      	  <p id="pwd"></p>
-
-						        {/*<FormControl
-				                    type="password"
-				                    placeholder="Enter your password" bsSize="sm"
-									value={this.props.Password}  />				                
+						      	<p id="pwd"></p>
+						        	{/*<FormControl
+					                    type="password"
+					                    placeholder="Enter your password" bsSize="sm"
+										value={this.props.Password}  />				                
 									<FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
-						    <FormGroup>
+						    {/*<FormGroup>
 						      	<Col smOffset={2} sm={10}>
 			                		<Button type="submit" bsStyle="primary" >
 						          		Edit
@@ -114,7 +107,7 @@ class Profile extends Component{
 						          		Save
 						        	</Button>
 						      	</Col>
-						    </FormGroup>
+						    </FormGroup>*/}
   						</Form>
 
 					</div>

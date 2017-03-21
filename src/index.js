@@ -9,14 +9,16 @@ import Profile from './Profile.js';
 import Products from './Products.js';
 import ProductDetail from './ProductDetail.js';
 import ViewCart from './ViewCart.js';
-import Checkout from './Checkout.js';
+import DeliveryAddress from './DeliveryAddress.js';
+import OrderSummary from './OrderSummary.js';
+import OrderConfirmation from './OrderConfirmation.js';
 import MyOrder from './MyOrder.js';
-import './index.css';
+import './css/index.css';
 
 ReactDOM.render(
 	<Router history={browserHistory} >
 	    <Route path="/">
-	       	<IndexRoute path="/" component={App} />
+	       	<IndexRoute component={App} />
 			<Route path="/Dashboard" component={Dashboard} />
 			<Route path="/Login" component={Login} />
 			<Route path="/SignUp" component={SignUp} />
@@ -24,7 +26,9 @@ ReactDOM.render(
 			<Route path="/Products" component={Products}/>
 			<Route path="/ProductDetail/:id" component={ProductDetail} />
 			<Route path="/ViewCart" component={ViewCart} />
-			<Route path="/Checkout" component={Checkout} />
+			<Route path="/DeliveryAddress" component={DeliveryAddress} />
+			<Route path="/OrderSummary" component={OrderSummary} />
+			<Route path="/OrderConfirmation" component={OrderConfirmation} />
 			<Route path="/MyOrder" component={MyOrder} />
 	    </Route> 
   	</Router>,

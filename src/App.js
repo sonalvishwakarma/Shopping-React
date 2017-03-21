@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ecommerce from './img/ecommerce.jpg';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Header from './Home.js';
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
-
 var allCartData = [];
 
 class ViewCart extends Component {
@@ -18,7 +17,6 @@ class ViewCart extends Component {
 	}
 
     componentDidMount(){
-        
         this.getShppingCart();
     }
 
@@ -33,7 +31,7 @@ class ViewCart extends Component {
             var userID =  UserDetails.UserID;
             
             var usersCart = json.filter(function(pro){
-                return pro.UserId == userID;
+                return pro.UserId === userID;
             })
 
             var total = 0;
@@ -46,14 +44,18 @@ class ViewCart extends Component {
               grandTotal : total
             });
         }.bind(this));
-
     }
 
     removeCart(cart){
 
         allCartData.forEach(function(car, index){
-            if(car.CartId == cart.CartId){
-                var carts = allCartData.slice(index);
+            if(car.CartId === cart.CartId){
+                if(allCartData.length === 1){
+                    var carts = allCartData.splice(0);
+                }
+                else{
+                    var carts = allCartData.slice(index);
+                }
                  fetch(shoppingCart, {  
                     method: 'PUT',
                     headers: {
@@ -67,20 +69,6 @@ class ViewCart extends Component {
                 }.bind(this))
             }
         }.bind(this))
-        /*var index = allCartData.indexOf(cart);
-       
-
-        fetch(shoppingCart, {  
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(carts)
-        }).then(function(){
-            alert("Successfully deleted the product from your cart");
-            this.getShppingCart();
-        }.bind(this))*/
     }
 
 	render(){
@@ -119,10 +107,7 @@ class ViewCart extends Component {
                             <FormControl disabled
                                 type="text" defaultValue={number.Quantity} bsSize="sm"/>
                             <FormControl.Feedback />
-
-                            <Button  onClick={this.removeCart.bind(this, number)}>
-                            Remove</Button>
-
+                            <Button  onClick={this.removeCart.bind(this, number)}>Remove</Button>
                         </Col>      
                     </Col>        
                 </td>
@@ -141,15 +126,16 @@ class ViewCart extends Component {
                 <div id="content" className="main-content"> 
                     <div className="login">
                         <h2>View Cart</h2>
+
                         <Table striped bordered condensed hover>
                             <thead>
-                              <tr>
+                                <tr>
                                 <th colSpan="5">My cart</th>
-                              </tr>
+                                </tr>
                             </thead>
-                            <tbody>
+                                <tbody>
                                     {cardItems}
-                             </tbody> 
+                                </tbody> 
                         </Table>      
                             
                         <Row className="show-grid wColor">
@@ -166,19 +152,17 @@ class ViewCart extends Component {
                         </Row>
                         <br></br><br></br><br></br>
                         <Row className="show-grid wColor">
-                          <Col mdOffset={9}>
-                                    <span>
-                                      <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
-                                      <Button href="/checkout" bsStyle="danger">Checkout</Button>
-                                    </span>
+                            <Col mdOffset={9}>
+                                <span>
+                                  <Button href="/products" type="submit" bsStyle="primary" >Continue Shopping</Button> &nbsp;
+                                  <Button href="/DeliveryAddress" bsStyle="danger">Checkout</Button>
+                                </span>
                              </Col>
                         </Row>
                     </div>
                 </div> 
             </div>
         );
-
-		
 	}
 }
 

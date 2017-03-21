@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import Header from './Home.js';
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Glyphicon, Thumbnail} from 'react-bootstrap';
 import { browserHistory, Link } from 'react-router';
 
-var productApi = 'https://api.myjson.com/bins/y9d9b';
+{/*var productApi = 'https://api.myjson.com/bins/y9d9b';*/}
 
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
-var mycart = [];
-var viewCart = [];
-var mycartDetail = [];
-var productList = [];
 var userID;
-
-var userApi = 'https://api.myjson.com/bins/o4zz3';
 
 var PRODUCTS = [
   {
@@ -24,7 +18,7 @@ var PRODUCTS = [
     "SalesPrice": "160000",
     "Productquantity": 1,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "This is very good tv with amazing graphics and hd quality"
   },
   {
     "ProductID": 2,
@@ -33,21 +27,21 @@ var PRODUCTS = [
     "SalesPrice": "45000",
     "Productquantity": 1,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "A 102-cm TV is what you need to take your living room's entertainment quotient to a whole new level. Invest in this Vu Full HD TV and dive into a whole new level of immersive entertainment and be a part of the movie you are watching."
   },
   {
     "ProductID": 3,
     "ProductName": "Vu 120cm (52) HD Ready LED TV",
-    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
+    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/c/6/vu-40d6575-original-imaegyt4jgf4mynu.jpeg?q=70",
     "SalesPrice": "55000",
     "Productquantity": 10,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "A 102-cm TV is what you need to take your living room's entertainment quotient to a whole new level."
   },
   {
     "ProductID": 4,
     "ProductName": "Vu 150cm (62) HD Ready LED TV",
-    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
+    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/c/6/vu-40d6575-original-imaegyt4jgf4mynu.jpeg?q=70",
     "SalesPrice": "65000",
     "Productquantity": 1,
     "ProductType": "TV",
@@ -56,7 +50,7 @@ var PRODUCTS = [
   {
     "ProductID": 5,
     "ProductName": "Vu 20cm (21) HD Ready LED TV",
-    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
+    "image": "https://rukminim1.flixcart.com/image/312/312/television/z/r/w/vu-led-55k160gau-original-imaequhfjs83fbrp.jpeg?q=70",
     "SalesPrice": "80000",
     "Productquantity": 1,
     "ProductType": "TV",
@@ -64,49 +58,16 @@ var PRODUCTS = [
   },
   {
     "ProductID": 6,
-    "ProductName": "Vu 20cm (21) HD LED TV",
-    "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
-    "SalesPrice": "6000",
+    "ProductName": "Vu 65cm (30) HD LED TV",
+    "image": "https://rukminim1.flixcart.com/image/312/312/television/z/r/w/vu-led-55k160gau-original-imaequhfjs83fbrp.jpeg?q=70",
+    "SalesPrice": "16000",
     "Productquantity": 1,
     "ProductType": "TV",
-    "Description": "This is very good tv"
+    "Description": "A 102-cm TV is what you need to take your living room's entertainment quotient to a whole new level. Invest in this Vu Full HD TV and dive into a whole new level of immersive entertainment."
   }
 ];
 
 export class ProductInfo  extends Component {
-
-	constructor(props){
-		super(props);
-     
-      this.state = {
-      	mycartDetail : [],
-        productList : []
-      }
-	
-        this.getData()
-		this.getProducts()
-
-	}
-
-	getData(){
-        fetch(shoppingCart)
-        .then( (response) => {
-            return response.json()
-        })   
-        .then( (json) => {
-            mycartDetail = json
-        });
-    }
-
-    getProducts(){
-        fetch(productApi)
-        .then( (response) => {
-            return response.json()
-        })   
-        .then( (json) => {
-           	productList = json
-        });
-    }
 
    handleAddToCart(selectedProduct){
 	   	if(JSON.parse(localStorage.getItem("LoggedUser")))
@@ -119,7 +80,6 @@ export class ProductInfo  extends Component {
 				return response.json()
 			})   
 			.then( (json) => {
-
 				var product = {
 					CartId : json.length+1,
 					UserId : userID,
@@ -163,12 +123,9 @@ export class ProductInfo  extends Component {
 					<Link to={"ProductDetail/" + this.props.pro.ProductID}>
 						<h3>{this.props.pro.ProductName}</h3>
 					</Link>	
-					<p><Glyphicon glyph="star" />Sales Price : {this.props.pro.SalesPrice}</p>
-					<p><Glyphicon glyph="star" />Description : {this.props.pro.Description}</p>
-
+					<p>Price : {this.props.pro.SalesPrice}</p>
 					<div>
-						<Button bsStyle="primary" onClick={this.handleAddToCart.bind(this, this.props.pro)}>
-							Add to cart</Button>&nbsp;
+						<Button bsStyle="primary" onClick={this.handleAddToCart.bind(this, this.props.pro)}>Add to cart</Button>&nbsp;
 					</div> 
 				</Thumbnail> 
 			</div>	
@@ -192,21 +149,7 @@ export class ProductData extends Component {
 
 class Products extends Component {	
 
-    handledata(){
-    	var _this = this;
-    	this.state.mycartDetail.filter(function (value) {
-         	_this.state.productList.map(function (prod) {
-            	if(value.ProductId === prod.ProductID){
-            		viewCart.push(prod)
-
-                    localStorage.setItem('viewCart', JSON.stringify(viewCart));
-            	}
-        	})
-	    })
-    }
-
 	render(){
-
 		return (
 			<div className="main-app">
 				<Header/> 
