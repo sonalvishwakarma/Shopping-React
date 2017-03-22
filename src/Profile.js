@@ -39,7 +39,7 @@ class Profile extends Component{
 			<div className="main-app">
                	<Header/> 
                 <div id="content" className="main-content"> 
-				   <div className="login">
+				   <div className="container">
 						<h2>My Profile</h2>
 
 						<Form horizontal>

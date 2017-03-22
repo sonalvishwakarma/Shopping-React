@@ -62,6 +62,8 @@ class SignUp extends Component{
 		if(this.state.fname !== '' && this.state.lname !== '' && this.state.email !== '' && this.state.password !== '' )
 		{
 			if(this.state.password === this.state.confirmPwd){
+
+				// Post user detials with API
 				this.state.users.push({
 					"UserID":  this.state.users.length + 1,
 					"FirstName": this.state.fname,
@@ -69,7 +71,7 @@ class SignUp extends Component{
 					"EmailID": this.state.email,
 					"Password": this.state.password
 				})
-			
+			  
 				fetch(userApi, {  
 					method: 'PUT',
 					headers: {
@@ -101,13 +103,13 @@ class SignUp extends Component{
 			<div className="main-app">
 				<Header/> 
 				<div id="content" className="main-content"> 
-					<div className="login">
+					<div className="container">
 					<h2>Sign Up</h2>
 						<Form horizontal>
 
 							<FormGroup controlId="fn">
 								<Col componentClass={ControlLabel} sm={2}>
-									First Name
+									<span className="mand">*</span>First Name
 								</Col>
 								<Col sm={10}>
 									<FormControl
@@ -120,7 +122,7 @@ class SignUp extends Component{
 						
     						<FormGroup controlId="ln">
     							<Col componentClass={ControlLabel} sm={2}>
-    								Last Name
+    								<span className="mand">*</span>Last Name
     							</Col>	
     							<Col sm={10}>
     								<FormControl
@@ -133,7 +135,7 @@ class SignUp extends Component{
 
     						<FormGroup controlId="em">
                                 <Col componentClass={ControlLabel} sm={2}>
-                                    Email
+                                    <span className="mand">*</span>Email
                                 </Col>
                                 <Col sm={10}>
                                     <FormControl
@@ -146,7 +148,7 @@ class SignUp extends Component{
 
     						<FormGroup controlId="pwd">
         						<Col componentClass={ControlLabel} sm={2}>
-        						    Password
+        						    <span className="mand">*</span>Password
         						</Col>
         						<Col sm={10}>
             						<FormControl
@@ -159,7 +161,7 @@ class SignUp extends Component{
 
     						<FormGroup controlId="cnp">
         						<Col componentClass={ControlLabel} sm={2}>
-                                    Confirm password
+                                    <span className="mand">*</span>Confirm password
         						</Col>
         						<Col sm={10}>
             						<FormControl

@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row,Image,Table,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
+import { Button, Col,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
+
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 var UserDetails ={};
 
@@ -14,16 +15,18 @@ class DeliveryAddress extends Component {
         this.getData();
 
 		this.state = {
-			users : [{
-			UserID : '',
-			FirstName: '',
-			LastName: '',
-			EmailID:'' ,
-			Password :'',
-			contactno : '',
-			address : '',
-			city : '',
-			zip :''}]
+			users : [
+				{UserID : '',
+				FirstName: '',
+				LastName: '',
+				EmailID:'' ,
+				Password :'',
+				contactno : '',
+				address : '',
+				city : '',
+				zip :''}
+			],
+			users : []
 		}
       this.handleDeliveryAdd = this.handleDeliveryAdd.bind(this);
 	}
@@ -59,7 +62,7 @@ class DeliveryAddress extends Component {
 	handleDeliveryAdd(){
 		if(this.state.contactno !== '' && this.state.address !== '' && this.state.city !== '' && this.state.zip !== '' )
 		{   
-			var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+			UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
 
 				this.state.users  = ([{
 					"UserID":  UserDetails.UserID,
@@ -84,13 +87,9 @@ class DeliveryAddress extends Component {
 				{
 				return res.json()
 				.then(function(json) {  
-
 					localStorage.setItem('LoggedUser', JSON.stringify(this.state.users[0]));
-
-					if(json !== '' && JSON.parse(localStorage.getItem("LoggedUser")) ){
 						alert("Your delivery address is saved please continue with order summary")
 						browserHistory.push('/OrderSummary');
-					}	 
 				}.bind(this))
 			}.bind(this));
 		}
@@ -101,12 +100,12 @@ class DeliveryAddress extends Component {
 	}
 
 	render(){
-		var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+		UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
 		return (
 		<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
+				   	<div className="container">
                         <Form horizontal className="marginTop50">
 
 						   <FormGroup controlId="fn">
@@ -147,20 +146,19 @@ class DeliveryAddress extends Component {
 
 						     <FormGroup controlId="cn">
 						      <Col componentClass={ControlLabel} md={2}>
-						        Contact No
+						        <span className="mand">*</span>Contact No
 						      </Col>
 						      <Col md={10}>
 						        <FormControl
 				                    type="Number" value={this.state.contactno || UserDetails.ContactNo} onChange={this.handleContactNo.bind(this)}
 				                    placeholder="Enter your contact number" bsSize="sm" />
 				                <FormControl.Feedback />
-
 						      </Col>
 						    </FormGroup>
 
 						    <FormGroup controlId="add">
 						      <Col componentClass={ControlLabel} md={2}>
-						        Address
+						        <span className="mand">*</span>Address
 						      </Col>
 						      <Col md={10}>
 						        <FormControl
@@ -172,7 +170,7 @@ class DeliveryAddress extends Component {
 
 						    <FormGroup controlId="city">
 						      <Col componentClass={ControlLabel} md={2}>
-						        City
+						        <span className="mand">*</span>City
 						      </Col>
 						      <Col md={10}>
 						        <FormControl
@@ -184,7 +182,7 @@ class DeliveryAddress extends Component {
 
 						    <FormGroup controlId="zip">
 						      <Col componentClass={ControlLabel} md={2}>
-						        Zip
+						        <span className="mand">*</span>Zip
 						      </Col>
 						      <Col md={10}>
 						        <FormControl

@@ -3,6 +3,7 @@ import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
+
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
 
@@ -12,7 +13,8 @@ class ViewCart extends Component {
 		super(props);
         this.state = {
             cart : [],
-            grandTotal : 0
+            grandTotal : 0,
+            carts : []
         }
 	}
 
@@ -51,10 +53,10 @@ class ViewCart extends Component {
         allCartData.forEach(function(car, index){
             if(car.CartId === cart.CartId){
                 if(allCartData.length === 1){
-                    var carts = allCartData.splice(0);
+                    this.state.carts = allCartData.splice(0);
                 }
                 else{
-                    var carts = allCartData.slice(index);
+                    this.state.carts = allCartData.slice(index);
                 }
                  fetch(shoppingCart, {  
                     method: 'PUT',
@@ -62,7 +64,7 @@ class ViewCart extends Component {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(carts)
+                    body: JSON.stringify(this.state.carts)
                 }).then(function(){
                     alert("Successfully deleted the product from your cart");
                     this.getShppingCart();
@@ -72,29 +74,29 @@ class ViewCart extends Component {
     }
 
 	render(){
-        const cardItems = this.state.cart.map((number) =>
-            <tr key={number.CartId}>
+        const cardItems = this.state.cart.map((c) =>
+            <tr key={c.CartId}>
                 <td className="width25">
                     <Col md={12} className="wColor">
                         <Col md={6}>
-                            <Image src={number.Image}  alt="imgHome" className="imgViewCart"/>
+                            <Image src={c.Image}  alt="imgHome" className="imgViewCart"/>
                          </Col>
                         <Col  md={6}>
-                            <h5>{number.ProductName}</h5>
+                            <h5>{c.ProductName}</h5>
                         </Col>       
                     </Col>        
                 </td>
                 <td className="width25">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>{number.Description}</p>
+                            <p>{c.Description}</p>
                         </Col>       
                     </Col>        
                 </td>
                 <td className="width15">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>Price: - {number.Price}</p>
+                            <p>Price: - {c.Price}</p>
                         </Col>       
                     </Col>        
                 </td>
@@ -105,16 +107,16 @@ class ViewCart extends Component {
                         </Col> 
                         <Col md={6}>
                             <FormControl disabled
-                                type="text" defaultValue={number.Quantity} bsSize="sm"/>
+                                type="text" defaultValue={c.Quantity} bsSize="sm"/>
                             <FormControl.Feedback />
-                            <Button  onClick={this.removeCart.bind(this, number)}>Remove</Button>
+                            <Button onClick={this.removeCart.bind(this, c)}>Remove</Button>
                         </Col>      
                     </Col>        
                 </td>
                 <td className="width15">
                     <Col md={12} className="wColor">
                         <Col  md={12}>
-                            <p>Total: - {number.Quantity * number.Price}</p>
+                            <p>Total: - {c.Quantity * c.Price}</p>
                         </Col>       
                     </Col>       
                 </td>
@@ -124,7 +126,7 @@ class ViewCart extends Component {
             <div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-                    <div className="login">
+                    <div className="container">
                         <h2>View Cart</h2>
 
                         <Table striped bordered condensed hover>
@@ -159,6 +161,7 @@ class ViewCart extends Component {
                                 </span>
                              </Col>
                         </Row>
+                        
                     </div>
                 </div> 
             </div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+{/*import React, { Component } from 'react';
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -357,4 +357,4 @@ export class ViewCart extends Component {
 	}
 }
 
-export default Checkout;
+export default Checkout;*/}

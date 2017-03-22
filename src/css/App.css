@@ -62,6 +62,9 @@ ul.header li a {
   width: 25%;
 }
 
+.mand{
+  color: red;
+}
 .width15{
   width: 15%;
 }
@@ -179,7 +182,7 @@ ul.header li a {
   height: 60px;
   color: white;
 }
-.login{
+.container{
   background-color: gray;
   height: 100%;
   padding: 100px;

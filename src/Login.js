@@ -5,6 +5,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button, FormGroup, ControlLabel, FormControl, Col, Form} from 'react-bootstrap';
 
+// JSON url for Users
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
 class Login extends Component {
@@ -28,6 +29,7 @@ class Login extends Component {
 		this.setState({password: event.target.value});
 	}
 
+    // getting users for login authentication
 	getData(){
 		fetch(userApi)
 		.then( (response) => {
@@ -39,7 +41,8 @@ class Login extends Component {
             })
 		});
 	}
-
+    
+    // Handle login with Email and Password
 	handleLogin() {
 
 		if(this.state.email !== '' && this.state.password !== '' ){
@@ -68,7 +71,7 @@ class Login extends Component {
                 <div className="main-app">
                     <Header/> 
                     <div id="content" className="main-content"> 
-                        <div className="login">
+                        <div className="container">
                         <h2>Login</h2>
 
                         <Form horizontal>

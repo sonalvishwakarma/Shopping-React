@@ -14,7 +14,7 @@ class MyOrder extends Component {
 		var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
 
 		var dateObj = new Date();
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
+		var month = dateObj.getUTCMonth() + 1;
 		var day = dateObj.getUTCDate();
 		var year = dateObj.getUTCFullYear();
 
@@ -24,7 +24,7 @@ class MyOrder extends Component {
 			<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
+				   	<div className="container">
 					   	<Grid>
 						    <Row className="show-grid">
 						      <Col md={9}><h2>Invoice</h2></Col>

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Col, Row,Image,Table, Tabs,Tab,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
-var userApi = 'https://api.myjson.com/bins/o4zz3';
-var UserDetails ={};
+import { Button, Col, Row, Image, Table, FormGroup, FormControl} from 'react-bootstrap';
 
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
+var UserDetails = {};
 
 class OrderSummary extends Component {
 
@@ -16,16 +14,14 @@ class OrderSummary extends Component {
 		var uniqueID = new Date().getTime();
 		localStorage.setItem('orderNumber', JSON.stringify(uniqueID));
 		alert("your order details is saved check your Confirmation")
-
 	}
 
 	render(){
-		var orderNumbers = JSON.parse(localStorage.getItem("orderNumber")) 
 		return (
 		<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
+				   	<div className="container">
 				        <ViewCart/>
 				        <FormGroup>
 					      	<Col mdOffset={11} md={2}>
@@ -62,7 +58,7 @@ export class ViewCart extends Component {
         })   
         .then(function(json){
             allCartData = json;
-            var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
+            UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
             var userID =  UserDetails.UserID;
             
             var usersCart = json.filter(function(pro){

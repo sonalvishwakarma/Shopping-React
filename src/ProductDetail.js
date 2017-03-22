@@ -38,7 +38,7 @@ class ProductDetail extends Component {
 			<div className="main-app">
                 <Header/> 
                 <div id="content" className="main-content"> 
-				   	<div className="login">
+				   	<div className="container">
 						<h2>Products Details</h2>
 						<Jumbotron>
 	                       	<Row className="show-grid">
