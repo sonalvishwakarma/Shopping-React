@@ -27,7 +27,7 @@ class OrderSummary extends Component {
 				        <ViewCart/>
 				        <FormGroup>
 					      	<Col mdOffset={11} md={2}>
-		                		<Button type="submit" bsStyle="primary" onClick={this.orderSave.bind(this)}>
+		                		<Button type="submit" bsStyle="primary" href="/OrderConfirmation" onClick={this.orderSave.bind(this)}>
 					          		Save and continue
 					        	</Button>
 					      	</Col>

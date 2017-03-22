@@ -26,50 +26,42 @@ class MyOrder extends Component {
                 <div id="content" className="main-content"> 
 				   	<div className="container">
 					   	<Grid>
-						    <Row className="show-grid">
-						      <Col md={9}><h2>Invoice</h2></Col>
-						      <Col md={3}><h2>Order#{orderNumbers}</h2></Col>
-						    </Row>
-						</Grid>    
-						<hr></hr>
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={10}>
-						      	<h4>Billed To</h4>
-						      	<p>{UserDetails.Address1}</p>
-						      	<p>Bangalore(KA)</p>
-						      </Col>
-						      <Col xs={6} md={2}>
-						      	<h4>Shipped To</h4>
-						      	<p>{UserDetails.Address1}</p>
-	                            <p>Bangalore(KA)</p>
-						      </Col>
-						    </Row>
-						</Grid>
-
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={10}>
-						      	<h4>Payment Method</h4>
-						      	<p>visa ending***4258</p>
-						      	<p>{UserDetails.EmailID}</p>
-						      </Col>
-						      <Col xs={6} md={2}>
-						      	<h4>Order Date</h4>
-						      	<p>{newdate}</p>
-						      </Col>
-						    </Row>
-						</Grid> 
-
-						<Grid>
-						    <Row className="show-grid">
-						      <Col xs={12} md={12}>
-						      	<ListGroup>
-								    <ListGroupItem  active>Order Summary</ListGroupItem>
-								    	 <ViewCart/>  
-								  </ListGroup>
-						      </Col>
-						    </Row>
+                            <Row className="show-grid">
+                                <Col md={9}><h2>Invoice</h2></Col>
+                                <Col md={3}><h2>Order#{orderNumbers}</h2></Col>
+                            </Row>
+                                <hr></hr>
+                            <Row className="show-grid">
+                                <Col xs={12} md={10}>
+                                    <h4>Billed To</h4>
+                                        <p>{UserDetails.Address1}</p>
+                                    <p>Bangalore(KA)</p>
+                                </Col>
+                                <Col xs={6} md={2}>
+                                    <h4>Shipped To</h4>
+                                        <p>{UserDetails.Address1}</p>
+                                    <p>Bangalore(KA)</p>
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={10}>
+                                    <h4>Payment Method</h4>
+                                        <p>visa ending***4258</p>
+                                    <p>{UserDetails.EmailID}</p>
+                                </Col>
+                                <Col xs={6} md={2}>
+                                    <h4>Order Date</h4>
+                                    <p>{newdate}</p>
+                                </Col>
+                            </Row>
+                            <Row className="show-grid">
+                                <Col xs={12} md={12}>
+                                    <ListGroup>
+                                        <ListGroupItem  active>Order Summary</ListGroupItem>
+                                        <ViewCart/>  
+                                    </ListGroup>
+                                </Col>
+                            </Row>
 						</Grid> 
 					</div>		
 				</div> 
@@ -169,19 +161,18 @@ export class ViewCart extends Component {
                             {cardItems}
                         </tbody> 
                 </Table>      
-                 <hr></hr>   
+                    <hr></hr>   
                 <Row className="show-grid wColor">
-                  <Col mdOffset={10}>
+                    <Col mdOffset={10}>
                        <Col md={6}>
                             Grand Total:
                         </Col> 
-                        <Col md={6}>
-                            <FormControl disabled
-                                type="text" value={this.state.grandTotal} bsSize="sm"/>
-                            <FormControl.Feedback />
+                        <Col md={6} >
+                           <span className="wColor">{this.state.grandTotal}</span>
                         </Col> 
-                     </Col>
+                    </Col>
                 </Row>
+                 <hr></hr>  
             </div>
         );
 	}

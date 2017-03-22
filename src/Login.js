@@ -76,7 +76,7 @@ class Login extends Component {
 
                         <Form horizontal>
                             <FormGroup controlId="emaila">
-                                <Col componentClass={ControlLabel} sm={2}>
+                                <Col componentClass={ControlLabel} md={2}>
                                     Email
                                 </Col>
                                 <Col sm={10}>
@@ -89,7 +89,7 @@ class Login extends Component {
                             </FormGroup>
 
                             <FormGroup controlId="pwda">
-                                <Col componentClass={ControlLabel} sm={2}>
+                                <Col componentClass={ControlLabel} md={2}>
                                      Password
                                 </Col>
                                 <Col sm={10}>
@@ -102,7 +102,7 @@ class Login extends Component {
                             </FormGroup>
 
                             <FormGroup>
-                                <Col smOffset={2} sm={10}>
+                                <Col mdOffset={2} md={10}>
                                     <Button type="submit" bsStyle="primary" onClick={this.handleLogin}>Login</Button>
                                     <Button href="#" bsStyle="link">forget password</Button>
                                 </Col>

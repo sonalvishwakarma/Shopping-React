@@ -110,10 +110,10 @@ class SignUp extends Component{
 						<Form horizontal>
 
 							<FormGroup controlId="fn">
-								<Col componentClass={ControlLabel} sm={2}>
+								<Col componentClass={ControlLabel} md={2}>
 									<span className="mand">*</span>First Name
 								</Col>
-								<Col sm={10}>
+								<Col md={10}>
 									<FormControl
 										type="text"
 										placeholder="Enter your first name" bsSize="sm"
@@ -123,10 +123,10 @@ class SignUp extends Component{
 							</FormGroup>
 						
     						<FormGroup controlId="ln">
-    							<Col componentClass={ControlLabel} sm={2}>
+    							<Col componentClass={ControlLabel} md={2}>
     								<span className="mand">*</span>Last Name
     							</Col>	
-    							<Col sm={10}>
+    							<Col md={10}>
     								<FormControl
     									type="text"
     									placeholder="Enter your last name" bsSize="sm"
@@ -136,10 +136,10 @@ class SignUp extends Component{
     						</FormGroup>
 
     						<FormGroup controlId="em">
-                                <Col componentClass={ControlLabel} sm={2}>
+                                <Col componentClass={ControlLabel} md={2}>
                                     <span className="mand">*</span>Email
                                 </Col>
-                                <Col sm={10}>
+                                <Col md={10}>
                                     <FormControl
                                         type="email"
                                         placeholder="Enter your email" bsSize="sm" 
@@ -149,10 +149,10 @@ class SignUp extends Component{
                             </FormGroup>
 
     						<FormGroup controlId="pwd">
-        						<Col componentClass={ControlLabel} sm={2}>
+        						<Col componentClass={ControlLabel} md={2}>
         						    <span className="mand">*</span>Password
         						</Col>
-        						<Col sm={10}>
+        						<Col md={10}>
             						<FormControl
                 						type="password"
                 						placeholder="Enter your password" bsSize="sm"
@@ -162,10 +162,10 @@ class SignUp extends Component{
     						</FormGroup>
 
     						<FormGroup controlId="cnp">
-        						<Col componentClass={ControlLabel} sm={2}>
+        						<Col componentClass={ControlLabel} md={2}>
                                     <span className="mand">*</span>Confirm password
         						</Col>
-        						<Col sm={10}>
+        						<Col md={10}>
             						<FormControl
 	            						type="password"
 	            						placeholder="Enter Confirm your password" bsSize="sm"
@@ -175,7 +175,7 @@ class SignUp extends Component{
     						</FormGroup>
 
     						<FormGroup>
-        						<Col smOffset={2} sm={10}>
+        						<Col mdOffset={2} md={10}>
             						<Button type="submit" bsStyle="primary" onClick={this.handleSignUp}>
             						   Sign in
             						</Button>

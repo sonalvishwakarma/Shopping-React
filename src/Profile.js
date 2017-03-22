@@ -39,39 +39,39 @@ class Profile extends Component{
 						<Form horizontal>
                             {/*<span></span>*/}
 						    <FormGroup controlId="firstName">
-						      <Col componentClass={ControlLabel} sm={2}>
+						      <Col componentClass={ControlLabel} md={2}>
 						        First Name  :
 						      </Col>
-						      <Col sm={10}>
+						      <Col md={10}>
 						        <p id="fname"></p>
 						        	{/*<FormControl
-					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                    type="text"  bsSize="md" ref="inputvalue" defaultValue={this.state.fname || ''}
 					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
                             <FormGroup controlId="lastName">
-						      <Col componentClass={ControlLabel} sm={2}>
+						      <Col componentClass={ControlLabel} md={2}>
 						        Last Name  :
 						      </Col>
-						      <Col sm={10}>
+						      <Col md={10}>
 						        <p id="lname"></p>
 						        	{/*<FormControl
-					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                    type="text"  bsSize="md" ref="inputvalue" defaultValue={this.state.fname || ''}
 					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
 						    <FormGroup controlId="email">
-						      <Col componentClass={ControlLabel} sm={2}>
+						      <Col componentClass={ControlLabel} md={2}>
 						        Email  :
 						      </Col>
-						      <Col sm={10}>
+						      <Col md={10}>
 						      	 <p id="emailid"></p>
 						        	{/*<FormControl
-					                    type="text"  bsSize="sm" ref="inputvalue" defaultValue={this.state.fname || ''}
+					                    type="text"  bsSize="md" ref="inputvalue" defaultValue={this.state.fname || ''}
 					                     onChange={this.handleFirstName}/>
 					                <FormControl.Feedback />*/}
 						      </Col>
@@ -79,21 +79,21 @@ class Profile extends Component{
 
 
 						    <FormGroup controlId="formHorizontalPassword">
-						      <Col componentClass={ControlLabel} sm={2}>
+						      <Col componentClass={ControlLabel} md={2}>
 						        Password  :
 						      </Col>
-						      <Col sm={10}>
+						      <Col md={10}>
 						      	<p id="pwd"></p>
 						        	{/*<FormControl
 					                    type="password"
-					                    placeholder="Enter your password" bsSize="sm"
+					                    placeholder="Enter your password" bsSize="md"
 										value={this.props.Password}  />				                
 									<FormControl.Feedback />*/}
 						      </Col>
 						    </FormGroup>
 
 						    {/*<FormGroup>
-						      	<Col smOffset={2} sm={10}>
+						      	<Col mdOffset={2} md={10}>
 			                		<Button type="submit" bsStyle="primary" >
 						          		Edit
 						        	</Button>

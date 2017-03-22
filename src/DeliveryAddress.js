@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+{/*import { browserHistory } from 'react-router';
+*/}
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -26,8 +27,7 @@ class DeliveryAddress extends Component {
 				address : '',
 				city : '',
 				zip :''}
-			],
-			users : []
+			]
 		}
       this.handleDeliveryAdd = this.handleDeliveryAdd.bind(this);
 	}
@@ -92,7 +92,7 @@ class DeliveryAddress extends Component {
 				.then(function(json) {  
 					localStorage.setItem('LoggedUser', JSON.stringify(this.state.users[0]));
 						alert("Your delivery address is saved please continue with order summary")
-						browserHistory.push('/OrderSummary');
+						{/*browserHistory.push('/OrderSummary');*/}
 				}.bind(this))
 			}.bind(this));
 		}
@@ -197,7 +197,7 @@ class DeliveryAddress extends Component {
 
 						    <FormGroup>
 						      	<Col mdOffset={10} md={2}>
-			                		<Button type="submit" bsStyle="primary" onClick={this.handleDeliveryAdd} >
+			                		<Button type="submit" bsStyle="primary" href="/OrderSummary" onClick={this.handleDeliveryAdd} >
 						          		Save and continue
 						        	</Button>
 						      	</Col>
