@@ -4,6 +4,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row, Image, Jumbotron,Thumbnail,Glyphicon} from 'react-bootstrap';
 
+//JSON url of products
 var productApi = 'https://api.myjson.com/bins/y9d9b';
 
 class ProductDetail extends Component {
@@ -18,6 +19,7 @@ class ProductDetail extends Component {
 		this.getData(productId)
 	}
 
+    // Getting selected product 
 	getData(productId){
         fetch(productApi)
         .then( (response) => {

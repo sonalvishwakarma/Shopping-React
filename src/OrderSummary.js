@@ -4,12 +4,14 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row, Image, Table, FormGroup, FormControl} from 'react-bootstrap';
 
+//JSON url of shopping cart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
 var UserDetails = {};
 
 class OrderSummary extends Component {
-
+    
+    // Handle order summary
 	orderSave(){
 		var uniqueID = new Date().getTime();
 		localStorage.setItem('orderNumber', JSON.stringify(uniqueID));
@@ -37,6 +39,7 @@ class OrderSummary extends Component {
 	}
 }
 
+// Component of saved shopping cart
 export class ViewCart extends Component {
 
 	constructor(props){

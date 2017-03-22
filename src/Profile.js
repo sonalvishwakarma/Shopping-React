@@ -18,20 +18,14 @@ class Profile extends Component{
   	componentDidMount(){
        this.getIntialData()
   	}
-
+    
+    // Getting logged user by localstorage
   	getIntialData(){
   		var userDetails = JSON.parse(localStorage.getItem("LoggedUser"));
-       
-        {/* this.state.fname = userDetails.FirstName;
-         console.log(this.state.fname)*/}
          document.getElementById("fname").innerHTML = userDetails.FirstName;
          document.getElementById("lname").innerHTML = userDetails.LastName;
          document.getElementById("emailid").innerHTML = userDetails.EmailID;
          document.getElementById("pwd").innerHTML = userDetails.Password;	
-  	}
-
-  	handleFirstName(event){
-	     this.setState({ fname : event.target.value})
   	}
    
 	render(){

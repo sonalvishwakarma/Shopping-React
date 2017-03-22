@@ -7,9 +7,11 @@ import { browserHistory, Link } from 'react-router';
 
 {/*var productApi = 'https://api.myjson.com/bins/y9d9b';*/}
 
+//JSON url of shopping cart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var userID;
 
+//JSON of products
 var PRODUCTS = [
   {
     "ProductID": 1,
@@ -69,6 +71,7 @@ var PRODUCTS = [
 
 export class ProductInfo  extends Component {
 
+   // Handle add to the product in the cart
    handleAddToCart(selectedProduct){
 	   	if(JSON.parse(localStorage.getItem("LoggedUser")))
 	   	{

@@ -6,7 +6,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button} from 'react-bootstrap';
 
-// JSON url for shoppingCart
+// JSON url of shoppingCart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 
 class Header extends Component {
@@ -26,7 +26,7 @@ class Header extends Component {
         browserHistory.push('/');
     }
     
-    // getting shoppingCart data for button count
+    // getting shoppingCart data for Basket-cart count
     getData(){
         fetch(shoppingCart)
         .then( (response) => {

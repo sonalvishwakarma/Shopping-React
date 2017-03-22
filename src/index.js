@@ -15,6 +15,7 @@ import OrderConfirmation from './OrderConfirmation.js';
 import MyOrder from './MyOrder.js';
 import './css/index.css';
 
+//Route for all components
 ReactDOM.render(
 	<Router history={browserHistory} >
 	    <Route path="/">

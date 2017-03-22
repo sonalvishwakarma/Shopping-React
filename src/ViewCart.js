@@ -4,6 +4,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 
+//JSON url of shopping cart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
 
@@ -21,7 +22,8 @@ class ViewCart extends Component {
     componentDidMount(){
         this.getShppingCart();
     }
-
+    
+    // Getting added product from shopping cart
     getShppingCart(){
         fetch(shoppingCart)
         .then( (response) => {
@@ -47,7 +49,8 @@ class ViewCart extends Component {
             });
         }.bind(this));
     }
-
+    
+    // Handle remove the product from the shopping cart
     removeCart(cart){
 
         allCartData.forEach(function(car, index){

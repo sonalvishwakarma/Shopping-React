@@ -5,6 +5,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, FormGroup,ControlLabel, FormControl, Col,Form} from 'react-bootstrap';
 
+// JSON url of Users
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
 class SignUp extends Component{
@@ -57,6 +58,7 @@ class SignUp extends Component{
 		});
 	}
 	
+	// Handle Sign up with users details
 	handleSignUp() {
 
 		if(this.state.fname !== '' && this.state.lname !== '' && this.state.email !== '' && this.state.password !== '' )

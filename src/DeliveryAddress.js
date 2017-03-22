@@ -5,6 +5,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Col,Form, FormGroup,FormControl,ControlLabel} from 'react-bootstrap';
 
+//JSON url of users
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 var UserDetails ={};
 
@@ -46,7 +47,8 @@ class DeliveryAddress extends Component {
 	handleZip(event) {
 		this.setState({zip: event.target.value});
 	}
-
+    
+    // Getting Users for handle delivery address
 	getData(){
 		fetch(userApi)
 		.then( (response) => {
@@ -58,7 +60,8 @@ class DeliveryAddress extends Component {
 			})
 		});
 	}
-
+   
+    // Handle delivery address
 	handleDeliveryAdd(){
 		if(this.state.contactno !== '' && this.state.address !== '' && this.state.city !== '' && this.state.zip !== '' )
 		{   

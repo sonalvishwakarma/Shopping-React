@@ -5,7 +5,7 @@ import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button, FormGroup, ControlLabel, FormControl, Col, Form} from 'react-bootstrap';
 
-// JSON url for Users
+// JSON url of Users
 var userApi = 'https://api.myjson.com/bins/o4zz3';
 
 class Login extends Component {
