@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class paymentDetails extends Component {
 	render(){
-		var orderNumbers = JSON.parse(localStorage.getItem("orderNumber")) 
 		return (
 		<div className="main-app">
                 <Header/> 
