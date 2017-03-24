@@ -94,6 +94,9 @@ ul.header li a {
   background-color: #111;
 }
 
+.active {
+  background-color: #337ab7;
+}
 .row {
     margin-right: -15px;
     margin-left: 63px;

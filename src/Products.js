@@ -10,12 +10,12 @@ import { browserHistory, Link } from 'react-router';
 //JSON url of shopping cart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var userID;
-
+var prodID;
 //JSON of products
 var PRODUCTS = [
   {
     "ProductID": 1,
-    "ProductName": "Vu 80cm (32) HD Ready LED TV",
+    "ProductName": "Vu 80cm (32) HD LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
     "SalesPrice": "160000",
     "Productquantity": 1,
@@ -24,7 +24,7 @@ var PRODUCTS = [
   },
   {
     "ProductID": 2,
-    "ProductName": "Vu 100cm (42) HD Ready LED TV",
+    "ProductName": "Vu 100cm (42) LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/y/w/vu-32k160mrevd-original-imaeg8grazngxb37.jpeg?q=70",
     "SalesPrice": "45000",
     "Productquantity": 1,
@@ -33,16 +33,16 @@ var PRODUCTS = [
   },
   {
     "ProductID": 3,
-    "ProductName": "Vu 120cm (52) HD Ready LED TV",
+    "ProductName": "Vu 120cm (52) HD Graphics LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/c/6/vu-40d6575-original-imaegyt4jgf4mynu.jpeg?q=70",
     "SalesPrice": "55000",
-    "Productquantity": 10,
+    "Productquantity": 1,
     "ProductType": "TV",
     "Description": "A 102-cm TV is what you need to take your living room's entertainment quotient to a whole new level."
   },
   {
     "ProductID": 4,
-    "ProductName": "Vu 150cm (62) HD Ready LED TV",
+    "ProductName": "Vu 150cm (62) HD screen LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/g/c/6/vu-40d6575-original-imaegyt4jgf4mynu.jpeg?q=70",
     "SalesPrice": "65000",
     "Productquantity": 1,
@@ -51,7 +51,7 @@ var PRODUCTS = [
   },
   {
     "ProductID": 5,
-    "ProductName": "Vu 20cm (21) HD Ready LED TV",
+    "ProductName": "Vu 20cm (21) High resoulation with graphics LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/z/r/w/vu-led-55k160gau-original-imaequhfjs83fbrp.jpeg?q=70",
     "SalesPrice": "80000",
     "Productquantity": 1,
@@ -60,7 +60,7 @@ var PRODUCTS = [
   },
   {
     "ProductID": 6,
-    "ProductName": "Vu 65cm (30) HD LED TV",
+    "ProductName": "Vu 65cm (30) HD screen LED TV",
     "image": "https://rukminim1.flixcart.com/image/312/312/television/z/r/w/vu-led-55k160gau-original-imaequhfjs83fbrp.jpeg?q=70",
     "SalesPrice": "16000",
     "Productquantity": 1,
@@ -83,6 +83,14 @@ export class ProductInfo  extends Component {
 				return response.json()
 			})   
 			.then( (json) => {
+
+				var prodID = json.find(function(pID) {
+					return pID.ProductId === selectedProduct.ProductID;
+				})
+				if(prodID.ProductId === selectedProduct.ProductID){
+                  alert("product already added")
+				}
+				else{
 				var product = {
 					CartId : json.length+1,
 					UserId : userID,
@@ -90,7 +98,7 @@ export class ProductInfo  extends Component {
 					ProductName : selectedProduct.ProductName,
 					Price : selectedProduct.SalesPrice,
 					Image : selectedProduct.image,
-					Quantity : 1,
+					Quantity : selectedProduct.Productquantity,
 					Date : new Date(),
 					Description : selectedProduct.Description
 				}
@@ -108,9 +116,13 @@ export class ProductInfo  extends Component {
 					{
 					return res.json()
 					.then(function(json) {
-						alert("Successfully product added to the cart");
+
 					}.bind(this))
 				}.bind(this));
+				alert("Successfully product added to the cart");
+				browserHistory.push('/ViewCart');
+					
+				}
 			});
 	   	}
 	   	else {

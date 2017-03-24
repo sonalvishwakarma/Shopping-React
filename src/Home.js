@@ -11,74 +11,85 @@ var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 
 class Header extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-           mycart : []
-        }
+  constructor(props){
+    super(props);
+    this.state = {
+      mycart : []
     }
-    componentDidMount(){
-        this.getData()
-    }
-    // handle logout auth
-    handleLogout() {
-        localStorage.clear();
-        browserHistory.push('/');
-    }
-    
-    // getting shoppingCart data for Basket-cart count
-    getData(){
-        fetch(shoppingCart)
-        .then( (response) => {
-            return response.json()
-        })   
-        .then( (json) => {
-            this.state.mycart = json
-            var count = this.state.mycart.length;
-            document.getElementById("count").innerHTML = count;
-        });
-    }
+  }
 
-    render() {
-        return (
-            <div>
-                <div id="header" className="main-head"> 
-                    <ul className="header">
-                        <li><img src={logo} className="App-logo" alt="logo" /></li>
-                        <li><Link href="/">Home</Link></li>                                                                                                                             
-                        { JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                        (<li><Link to="dashboard">Dashboard</Link></li>)
-                         : null }
+  componentDidMount(){
+    this.getData()
+  }
+  // handle logout auth
+  handleLogout() {
+    localStorage.clear();
+    browserHistory.push('/');
+  }
 
-                        <li><Link to="products" className="marginRight">Product</Link></li>
-                        
-                        { JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                        (<li><Link to="viewCart"><Button type="submit" id="count"></Button><Button type="submit">
-                            <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link></li>)
-                         : null }
+  // getting shoppingCart data for Basket-cart count
+  getData(){
+    fetch(shoppingCart)
+    .then( (response) => {
+      return response.json()
+    })   
+    .then( (json) => {
+      this.state.mycart = json
+      var count = this.state.mycart.length;
+      document.getElementById("count").innerHTML = count;
+    });
+  }
 
-                        { JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                            (<li><Link to="profile">Profile</Link></li>)
-                            : (<li><Link to="login">Login</Link></li>)
-                        }
+  render() 
+  {
+    return (
+      <div>
+        <div id="header" className="main-head"> 
+          <ul className="header">
 
-                        { JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                            (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
-                        : (<li><Link to="signUp">SignUp</Link></li>)
-                        }
-                    </ul>
-                </div> 
-            </div>    
-        );
-    }
+            <li><img src={logo} className="App-logo" alt="logo" /></li>
+
+            <li><Link to="/" >Home</Link></li>                                                                                                    
+            { 
+              JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                (<li><Link to="dashboard">Dashboard</Link></li>)
+                : null 
+            }
+
+            <li><Link to="products" className="marginRight">Product</Link></li>
+
+            { 
+              JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                (<li><Link to="viewCart"><Button type="submit" id="count"></Button><Button type="submit">
+                <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link></li>)
+                : null
+            }
+
+            { 
+              JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                (<li><Link to="profile">Profile</Link></li>)
+                : (<li><Link to="login">Login</Link></li>)
+            }
+
+            { 
+              JSON.parse(localStorage.getItem("LoggedUser")) ? 
+                (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
+                : (<li><Link to="signUp">SignUp</Link></li>)
+            }
+          </ul>
+        </div> 
+      </div>    
+    );
+  }
 }
 
 export class Footer extends Component {
-    render() {
-        return (
-            <div id="footer" className="main-footer"></div>
-        );
-    }
+  render() {
+    return 
+    (
+      <div id="footer" className="main-footer"></div>
+    );
+  }
 }
 
 export default Header;

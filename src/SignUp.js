@@ -71,7 +71,11 @@ class SignUp extends Component{
 					"FirstName": this.state.fname,
 					"LastName": this.state.lname,
 					"EmailID": this.state.email,
-					"Password": this.state.password
+					"Password": this.state.password,
+					"ContactNo": "",
+				    "Address1": "",
+				    "City": "",
+				    "zip": ""
 				})
 			  
 				fetch(userApi, {  
@@ -85,10 +89,11 @@ class SignUp extends Component{
 				{
 					return res.json()
 					.then(function(json) {  
-						alert("Successfully Sign in")
-						browserHistory.push('/Login');
+
 					}.bind(this))
 				}.bind(this));
+				browserHistory.push('/Login');
+				alert("Successfully Sign in")
 			}
 			else if(this.state.password !== this.state.confirmPwd) {
 				alert("password and confirm password do not match.");
