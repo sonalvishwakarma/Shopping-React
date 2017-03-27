@@ -17,24 +17,25 @@ import NotFound from './NotFound.js';
 import './css/index.css';
 import {RouterResolver} from 'router-resolver';
 
-// Route for all components
-ReactDOM.render(
-	<Router history={browserHistory} >
-    <Route path="/">
-      <IndexRoute component={App} />
-			<Route path="/Dashboard" component={Dashboard} />                                                                                                
-			<Route path="/Login" component={Login} />
-			<Route path="/SignUp" component={SignUp} />                                                                                                         
-			<Route path="/Profile" component={Profile} />
-			<Route path="/Products" component={Products}/>                                                                                                              
-			<Route path="/ProductDetail/:id" component={ProductDetail} />
-			<Route path="/ViewCart" component={ViewCart} />                                                                                                            
-			<Route path="/DeliveryAddress" component={DeliveryAddress} />
-			<Route path="/OrderSummary" component={OrderSummary} />                                                                                             
-			<Route path="/OrderConfirmation" component={OrderConfirmation} />
-			<Route path="/MyOrder" component={MyOrder} />                                                                                                    
-			<Route path="*" component={NotFound} />
-	    </Route> 
-  	</Router>,
-  document.getElementById('root')
+	// Route for all components
+	ReactDOM.render(
+		<Router history={browserHistory} >
+		<Route path="/">
+		<IndexRoute component={App} />
+		<Route path="/Dashboard" component={Dashboard} />                                                                                                
+		<Route path="/Login" component={Login} />
+		<Route path="/SignUp" component={SignUp} />                                                                                                         
+		<Route path="/Profile" component={Profile} />
+		<Route path="/Products" component={Products}/>                                                                                                              
+		<Route path="/ProductDetail/:id" component={ProductDetail} />
+		<Route path="/ViewCart" component={ViewCart} />                                                                                                            
+		<Route path="/DeliveryAddress" component={DeliveryAddress} />
+		<Route path="/OrderSummary" component={OrderSummary} />                                                                                             
+		<Route path="/OrderConfirmation" component={OrderConfirmation} />
+		<Route path="/MyOrder" component={MyOrder} />                                                                                                    
+		<Route path="*" component={NotFound} />
+		</Route> 
+		</Router>,
+	document.getElementById('root')
 );
+

@@ -55,14 +55,14 @@ class Login extends Component {
             alert("Successfully logged in");
             browserHistory.push('/Dashboard')
 				}
-			  else 
+			  {/*else
         {
-		   		alert("Oops! You are not providing invalid crendentials");
-		   	}
+		   		alert("Oops! You are not providing valid crendentials");
+		   	}*/}
 		  } 
   	}
     else if(this.state.email === '' && this.state.password === '' ){
-        alert("Oops! You are not providing crendentials, please enter email and password");
+      alert("Oops! You are not providing crendentials, please enter email and password");
     }
   }
 

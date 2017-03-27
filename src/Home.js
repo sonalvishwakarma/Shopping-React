@@ -19,8 +19,9 @@ class Header extends Component {
   }
 
   componentDidMount(){
-    this.getData()
+    this.getData();
   }
+
   // handle logout auth
   handleLogout() {
     localStorage.clear();
@@ -36,7 +37,10 @@ class Header extends Component {
     .then( (json) => {
       this.state.mycart = json
       var count = this.state.mycart.length;
-      document.getElementById("count").innerHTML = count;
+      if(count >=  0){
+        localStorage.setItem('count', JSON.stringify(count));
+        document.getElementById("count").innerHTML = JSON.parse(localStorage.getItem("count"));
+      }
     });
   }
 
@@ -44,41 +48,62 @@ class Header extends Component {
   {
     return (
       <div>
-        <div id="header" className="main-head"> 
+        <div id="header" className="main-head">
           <ul className="header">
-
             <li><img src={logo} className="App-logo" alt="logo" /></li>
-
-            <li><Link to="/" >Home</Link></li>                                                                                                    
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             { 
               JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                (<li><Link to="dashboard">Dashboard</Link></li>)
-                : null 
+              (
+              <li>
+                <Link to="dashboard">Dashboard</Link>
+              </li>
+              )
+              : null 
             }
-
-            <li><Link to="products" className="marginRight">Product</Link></li>
-
+            <li>
+              <Link to="products" className="marginRight">Product</Link>
+            </li>
             { 
               JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                (<li><Link to="viewCart"><Button type="submit" id="count"></Button><Button type="submit">
-                <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link></li>)
-                : null
+              (
+              <li>
+                <Link to="viewCart">
+                <Button type="submit" id="count"></Button><Button type="submit">
+                <img className="addtoCart" src={addtoCart} alt="addtoCart"/></Button></Link>
+              </li>
+              )
+              : null
             }
-
             { 
               JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                (<li><Link to="profile">Profile</Link></li>)
-                : (<li><Link to="login">Login</Link></li>)
+              (
+              <li>
+                <Link to="profile">Profile</Link>
+              </li>
+              )
+              : (
+              <li>
+                <Link to="login">Login</Link>
+              </li>
+              )
             }
-
             { 
               JSON.parse(localStorage.getItem("LoggedUser")) ? 
-                (<li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>)
-                : (<li><Link to="signUp">SignUp</Link></li>)
+              (
+              <li><Button type="submit" onClick={this.handleLogout}>Logout</Button></li>
+              )
+              : (
+              <li>
+                <Link to="signUp">SignUp</Link>
+              </li>
+              )
             }
           </ul>
-        </div> 
-      </div>    
+        </div>
+      </div>   
     );
   }
 }

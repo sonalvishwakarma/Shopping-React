@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import Header from './Home.js';
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -7,7 +8,7 @@ import { Button, Col, Row,Image,Table,FormControl} from 'react-bootstrap';
 //JSON url of shopping cart
 var shoppingCart = 'https://api.myjson.com/bins/he9jr';
 var allCartData = [];
-
+var shoppingcount;
 class ViewCart extends Component {
 
 	constructor(props){
@@ -16,9 +17,19 @@ class ViewCart extends Component {
       cart : [],
       grandTotal : 0,
       carts : [],
-      Quantity : 1
+      Quantity : 1,
+      showComponent : false
     }
 	}
+
+  componentWillMount(){
+    if(JSON.parse(localStorage.getItem("LoggedUser"))){
+      browserHistory.push('/ViewCart')
+    }
+    else{
+      browserHistory.push('/Login')
+    }
+  }
 
   componentDidMount(){
     this.getShppingCart();
@@ -36,6 +47,8 @@ class ViewCart extends Component {
     })   
     .then(function(json){
       allCartData = json;
+      shoppingcount = allCartData.length;
+      localStorage.setItem('count', JSON.stringify(shoppingcount));
       var UserDetails = JSON.parse(localStorage.getItem("LoggedUser"))
       var userID =  UserDetails.UserID;
       
@@ -57,32 +70,37 @@ class ViewCart extends Component {
     
     // Handle remove the product from the shopping cart
   removeCart(cart){
-    allCartData.forEach(function(car, index){
-      if(car.CartId === cart.CartId){
-        {/* if(allCartData.length === 1){
-            this.state.carts = allCartData.splice(0);
-        }
-        else{
-            this.state.carts = allCartData.slice(index);
-        }*/}
-        this.state.carts = allCartData.slice(index);
 
-        fetch(shoppingCart, {  
-          method: 'PUT',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.state.carts)
-        }).then(function(){
-          alert("Successfully deleted the product from your cart");
-          this.getShppingCart();
-        }.bind(this))
+    allCartData.forEach(function(car, index){
+
+      if(car.CartId === cart.CartId){
+       this.state.carts = allCartData.slice(index);
+       allCartData.pop(this.state.carts);
+
+       fetch(shoppingCart, {  
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(allCartData)
+      }).then(function(){
+        shoppingcount = allCartData.length;
+        localStorage.setItem('count', JSON.stringify(shoppingcount));
+        this.setState({
+          showComponent: true,
+        });
+          browserHistory.push('/products')
+          browserHistory.push('/ViewCart')
+        alert("Successfully deleted the product from your cart");
+        this.getShppingCart();
+        }.bind(this));
       }
-    }.bind(this))
+    }.bind(this));
   }
 
 	render(){
+    
     const cardItems = this.state.cart.map((c) =>
       <tr key={c.CartId}>
         <td className="width25">
@@ -118,7 +136,9 @@ class ViewCart extends Component {
               <FormControl
                 type="Number" defaultValue={c.Quantity || this.state.Quantity} bsSize="sm" min="1" onChange={this.HandleQuantity.bind(this)}/>
               <FormControl.Feedback />
-              <Button bsStyle="danger" onClick={this.removeCart.bind(this, c)}>Remove</Button>
+              <span>
+                <Button bsStyle="danger" onClick={this.removeCart.bind(this, c)}>Remove</Button>
+              </span>
             </Col>      
           </Col>        
         </td>
@@ -127,7 +147,6 @@ class ViewCart extends Component {
             <Col  md={12}>
               {/*{c.Quantity!== '' ?(<p>Total:-{c.Quantity * c.Price}</p>):(<p>Total:-{this.state.Quantity * c.Price}</p>)}*/}
               <p>Total:-{this.state.Quantity * c.Price}</p>
-              <Button bsStyle="default" >Save Qty</Button>   
             </Col>       
           </Col>       
         </td>

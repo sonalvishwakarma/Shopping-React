@@ -73,11 +73,11 @@ class SignUp extends Component{
 					"EmailID": this.state.email,
 					"Password": this.state.password,
 					"ContactNo": "",
-				    "Address1": "",
-				    "City": "",
-				    "zip": ""
+					"Address1": "",
+					"City": "",
+					"zip": ""
 				})
-			  
+
 				fetch(userApi, {  
 					method: 'PUT',
 					headers: {
@@ -108,88 +108,82 @@ class SignUp extends Component{
 	render(){
 		return (
 			<div className="main-app">
-				<Header/> 
-				<div id="content" className="main-content"> 
-					<div className="container">
-					<h2>Sign Up</h2>
-						<Form horizontal>
-
-							<FormGroup controlId="fn">
-								<Col componentClass={ControlLabel} md={2}>
-									<span className="mand">*</span>First Name
-								</Col>
-								<Col md={10}>
-									<FormControl
-										type="text"
-										placeholder="Enter your first name" bsSize="sm"
-										value={this.state.fname} onChange={this.handleFNameChange.bind(this)}/>
-									<FormControl.Feedback />
-								</Col>
-							</FormGroup>
-						
-    						<FormGroup controlId="ln">
-    							<Col componentClass={ControlLabel} md={2}>
-    								<span className="mand">*</span>Last Name
-    							</Col>	
-    							<Col md={10}>
-    								<FormControl
-    									type="text"
-    									placeholder="Enter your last name" bsSize="sm"
-    									value={this.state.lname} onChange={this.handleLNameChange.bind(this)}/>	
-    								<FormControl.Feedback />
-    							</Col>
-    						</FormGroup>
-
-    						<FormGroup controlId="em">
-                                <Col componentClass={ControlLabel} md={2}>
-                                    <span className="mand">*</span>Email
-                                </Col>
-                                <Col md={10}>
-                                    <FormControl
-                                        type="email"
-                                        placeholder="Enter your email" bsSize="sm" 
-                                        value={this.state.email} onChange={this.handleEmailChange.bind(this)}/>
-                                    <FormControl.Feedback />
-                                </Col>      
-                            </FormGroup>
-
-    						<FormGroup controlId="pwd">
-        						<Col componentClass={ControlLabel} md={2}>
-        						    <span className="mand">*</span>Password
-        						</Col>
-        						<Col md={10}>
-            						<FormControl
-                						type="password"
-                						placeholder="Enter your password" bsSize="sm"
-                						value={this.state.password} onChange={this.handlePwdChange.bind(this)} />
-            						<FormControl.Feedback />
-        						</Col>
-    						</FormGroup>
-
-    						<FormGroup controlId="cnp">
-        						<Col componentClass={ControlLabel} md={2}>
-                                    <span className="mand">*</span>Confirm password
-        						</Col>
-        						<Col md={10}>
-            						<FormControl
-	            						type="password"
-	            						placeholder="Enter Confirm your password" bsSize="sm"
-	            						value={this.state.confirmPwd} onChange={this.handleConfirmPwdChange.bind(this)} />	
-            						<FormControl.Feedback />
-        						</Col>
-    						</FormGroup>
-
-    						<FormGroup>
-        						<Col mdOffset={2} md={10}>
-            						<Button type="submit" bsStyle="primary" onClick={this.handleSignUp}>
-            						   Sign in
-            						</Button>
-        						</Col>
-        					</FormGroup>
-					   	</Form>
-				    </div>
-			    </div> 
-		    </div>
+			  <Header/>
+			  <div id="content" className="main-content">
+			    <div className="container">
+			      <h2>Sign Up</h2>
+			      <Form horizontal>
+			        <FormGroup controlId="fn">
+			          <Col componentClass={ControlLabel} md={2}>
+			          <span className="mand">*</span>First Name
+			          </Col>
+			          <Col md={10}>
+			          <FormControl
+			            type="text"
+			            placeholder="Enter your first name" bsSize="sm"
+			            value={this.state.fname} onChange={this.handleFNameChange.bind(this)}/>
+			          <FormControl.Feedback />
+			          </Col>
+			        </FormGroup>
+			        <FormGroup controlId="ln">
+			          <Col componentClass={ControlLabel} md={2}>
+			          <span className="mand">*</span>Last Name
+			          </Col>	
+			          <Col md={10}>
+			          <FormControl
+			            type="text"
+			            placeholder="Enter your last name" bsSize="sm"
+			            value={this.state.lname} onChange={this.handleLNameChange.bind(this)}/>
+			          <FormControl.Feedback />
+			          </Col>
+			        </FormGroup>
+			        <FormGroup controlId="em">
+			          <Col componentClass={ControlLabel} md={2}>
+			          <span className="mand">*</span>Email
+			          </Col>
+			          <Col md={10}>
+			          <FormControl
+			            type="email"
+			            placeholder="Enter your email" bsSize="sm" 
+			            value={this.state.email} onChange={this.handleEmailChange.bind(this)}/>
+			          <FormControl.Feedback />
+			          </Col>      
+			        </FormGroup>
+			        <FormGroup controlId="pwd">
+			          <Col componentClass={ControlLabel} md={2}>
+			          <span className="mand">*</span>Password
+			          </Col>
+			          <Col md={10}>
+			          <FormControl
+			            type="password"
+			            placeholder="Enter your password" bsSize="sm"
+			            value={this.state.password} onChange={this.handlePwdChange.bind(this)} />
+			          <FormControl.Feedback />
+			          </Col>
+			        </FormGroup>
+			        <FormGroup controlId="cnp">
+			          <Col componentClass={ControlLabel} md={2}>
+			          <span className="mand">*</span>Confirm password
+			          </Col>
+			          <Col md={10}>
+			          <FormControl
+			            type="password"
+			            placeholder="Enter Confirm your password" bsSize="sm"
+			            value={this.state.confirmPwd} onChange={this.handleConfirmPwdChange.bind(this)} />
+			          <FormControl.Feedback />
+			          </Col>
+			        </FormGroup>
+			        <FormGroup>
+			          <Col mdOffset={2} md={10}>
+			          <Button type="submit" bsStyle="primary" onClick={this.handleSignUp}>
+			          Sign in
+			          </Button>
+			          </Col>
+			        </FormGroup>
+			      </Form>
+			    </div>
+			  </div>
+			</div>
 		)
 	}
 }
