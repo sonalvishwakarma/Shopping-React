@@ -34,9 +34,12 @@ $ `Project `
 
 5 . Resources
 ---------
-     
+  # https://facebook.github.io/react/tutorial/tutorial.html
+  # https://www.tutorialspoint.com/reactjs/  
+
+  ** For JSON API's
+ 
   # Online tool : http://myjson.com/
-     ** For JSON API's
   # Handling data with JSON and localStorage
 
 6 .  Supported Language Features
