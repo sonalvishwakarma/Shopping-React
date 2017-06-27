@@ -25,22 +25,22 @@ $ `Project `
 3 . Project features
 --------
 
-  #  Login/SignUP
-  #  Home/ Dashboard
-  #  Products/Products Details
-  #  Add/Delete product to viewcart
-  #  Checkout
+    #  Login/SignUP
+    #  Home/ Dashboard
+    #  Products/Products Details
+    #  Add/Delete product to viewcart
+    #  Checkout
 
 
 5 . Resources
 ---------
-  # https://facebook.github.io/react/tutorial/tutorial.html
-  # https://www.tutorialspoint.com/reactjs/  
+    # https://facebook.github.io/react/tutorial/tutorial.html
+    # https://www.tutorialspoint.com/reactjs/  
 
-  ** For JSON API's
- 
-  # Online tool : http://myjson.com/
-  # Handling data with JSON and localStorage
+    ** For JSON API's
+   
+    # Online tool : http://myjson.com/
+    # Handling data with JSON and localStorage
 
 6 .  Supported Language Features
 ----------
@@ -51,4 +51,4 @@ $ `Project `
 7 . Contribute
 ----------
 
-  # Source Code: https://github.com/sonalvishwakarma/Shopping-React
+    # Source Code: https://github.com/sonalvishwakarma/Shopping-React
